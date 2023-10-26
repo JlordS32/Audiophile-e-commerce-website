@@ -1,9 +1,9 @@
-import Button from './components/Button';
+import Form from "./components/Form";
 
 const App = () => {
 	return (
 		<div className='app'>
-			<Button variant='primary'/>
+			<Form.Radio value="something"/>
 		</div>
 	);
 };
