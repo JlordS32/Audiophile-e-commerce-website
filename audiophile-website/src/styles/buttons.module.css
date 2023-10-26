@@ -1,0 +1,48 @@
+/* buttons.module.css */
+.btn {
+	/* box */
+	width: 10rem;
+	height: 3rem;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	/* typography */
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.0625rem;
+	text-transform: uppercase;
+	transition: 150ms ease-in;
+}
+
+.btn--primary {
+	background-color: var(--btn-1);
+	color: var(--white);
+}
+
+.btn--primary:hover {
+	background-color: var(--btn-1-hover);
+}
+
+.btn--dark-outline {
+	outline: 1px solid var(--neutral-black);
+	color: var(--black);
+}
+
+.btn--dark-outline:hover {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+.btn--dark {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+.btn--dark:hover {
+	outline: 1px solid var(--neutral-black);
+	background-color: var(--light-grey);
+	color: var(--black);
+}
