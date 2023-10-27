@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from '../styles/form.module.css';
+import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 type FormProps = {
 	placeholder?: string;
@@ -15,9 +16,6 @@ type RadioProps = {
 	id?: string;
 };
 
-type CounterProps = {
-   
-}
 
 const Form = {
 	// Structed this component this way to make it into a reusable component just like with React Bootstrap
@@ -90,18 +88,33 @@ const Form = {
 						onClick={() => setChecked(!checked)}
 						checked={checked}
 					/>
-					<span style={{
-                  marginLeft: '1.5rem',
-                  fontSize: '0.875rem'
-               }}>{label}</span>
+					<span
+						style={{
+							marginLeft: '1.5rem',
+							fontSize: '0.875rem',
+						}}
+					>
+						{label}
+					</span>
 				</label>
 			</div>
 		);
 	},
 
-   Counter: function Counter() : CounterProps {
+	Counter: function Counter() {
 
-   }
+      const { quantity, increaseQuantity, decreaseQuantity } = UseShoppingCart();
+
+		return (
+			<div>
+				<div className={styles.counter}>
+					<span className={styles.increment} onClick={() => decreaseQuantity()}>-</span>
+					<span className={styles.value}>{quantity}</span>
+					<span className={styles.decrement} onClick={() => increaseQuantity()}>+</span>
+				</div>
+			</div>
+		);
+	},
 };
 
 export default Form;

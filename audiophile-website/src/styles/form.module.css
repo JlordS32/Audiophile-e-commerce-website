@@ -14,11 +14,13 @@
 	letter-spacing: -0.01563rem;
 	caret-color: var(--primary);
 	padding: 0 1.5rem;
-   cursor: pointer;
-   transition: 00ms ease-in;
+	cursor: pointer;
+	transition: 00ms ease-in;
 }
 
-.form:focus, .form.checked, .form:hover {
+.form:focus,
+.form.checked,
+.form:hover {
 	border-radius: 0.5rem;
 	outline: 1px solid var(--primary);
 	border: 0;
@@ -79,8 +81,44 @@
 	align-items: center;
 	justify-content: start;
 	cursor: pointer;
-   color: black;
-   font-size: 0.75rem;
+	color: black;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: -0.01338rem;
+}
+
+.counter {
+	width: 7.5rem;
+	height: 3rem;
+	flex-shrink: 0;
+	background: var(--grey);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0 1.25rem;
+}
+
+.increment,
+.decrement {
+	color: var(--black);
+	opacity: 0.25;
+	cursor: pointer;
+	font-size: 0.8125rem;
    font-weight: 700;
-   letter-spacing: -0.01338rem;
+   line-height: normal;
+	letter-spacing: 0.0625rem;
+}
+
+.increment:hover,
+.decrement:hover {
+	color: var(--primary);
+	opacity: 1;
+}
+
+.counter > .value {
+	color: var(--black);
+	font-size: 0.8125rem;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 0.0625rem;
 }

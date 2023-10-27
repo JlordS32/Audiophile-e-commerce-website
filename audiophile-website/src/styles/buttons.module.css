@@ -46,3 +46,11 @@
 	background-color: var(--light-grey);
 	color: var(--black);
 }
+
+.btn--link {
+	color: var(--black);
+}
+
+.btn--link:hover {
+   color: var(--primary);
+}
