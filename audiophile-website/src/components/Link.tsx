@@ -7,8 +7,14 @@ type LinkProps = {
 
 const Link = ({ children }: LinkProps) => {
 	return (
-		<div className={`${styles.btn} ${styles['btn--link']}`}>
-			<span>{children}</span>
+		<div
+			style={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+			}}
+		>
+			<span className={`${styles['btn--link']}`}>{children}</span>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='7'
@@ -24,7 +30,7 @@ const Link = ({ children }: LinkProps) => {
 					stroke='#D87D4A'
 					stroke-width='2'
 				/>
-			</svg>{' '}
+			</svg>
 		</div>
 	);
 };

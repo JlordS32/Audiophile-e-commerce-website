@@ -1,0 +1,54 @@
+.productHeadPhones,
+.productEarphones,
+.productSpeakers {
+	position: relative;
+	width: 21.875rem;
+	height: 12.75rem;
+	flex-shrink: 0;
+	border-radius: 0.5rem;
+	background: #f1f1f1;
+	background-color: var(--grey);
+
+	/* layout */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+   padding: 1.9rem;
+}
+
+.productHeadPhones > span,
+.productEarphones > span,
+.productSpeakers > span {
+	font-weight: 700;
+	font-size: 1.125rem;
+   padding-bottom: 0.95rem;
+}
+
+
+.productHeadPhones::before,
+.productEarphones::before,
+.productSpeakers::before {
+	content: '';
+   top: -37.5%;
+   left: 50%;
+   transform: translateX(-50%);
+   position: absolute;
+	display: inline-block;
+	background-size: contain;
+	width: 13rem;
+	aspect-ratio: 1/1;
+	background-repeat: no-repeat;
+}
+
+.productHeadPhones::before {
+	background-image: url(../assets/shared/desktop/image-category-thumbnail-headphones.png);
+}
+
+.productSpeakers::before {
+	background-image: url(../assets/shared/desktop/image-category-thumbnail-speakers.png);
+}
+
+.productEarphones::before {
+	background-image: url(../assets/shared/desktop/image-category-thumbnail-earphones.png);
+}

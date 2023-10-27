@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import Products from '../components/Products';
 import styles from '../styles/home.module.css';
 const Home = () => {
 	return (
@@ -40,6 +41,11 @@ const Home = () => {
 					</Button>
 				</div>
 			</div>
+			<section className='products-section' style={{
+            padding: '12.5rem 0'
+         }}>
+				<Products />
+			</section>
 		</div>
 	);
 };
