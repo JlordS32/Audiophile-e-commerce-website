@@ -4,35 +4,52 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	width: 100%;
-	min-height: 100vh;
-   display: flex;
-   justify-content: start;
-   align-items: center;
+   height: 100vh;
+	display: flex;
+	justify-content: start;
+	align-items: center;
 }
 
 .hero {
-   width: 26rem;
-   display: flex;
-   flex-direction: column;
-   gap: 1.5rem 0;
-   margin-left: 10.5rem;
+	width: 26rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem 0;
+	margin-left: 10.5rem;
+}
+
+.hero p {
+	width: 90%;
 }
 
 @media screen and (max-width: 767px) {
-   .home {
-      background-image: url('../assets/home/tablet/image-header.jpg');
-      justify-content: center;
-   }
+	.home {
+		background-image: url('../assets/home/tablet/image-header.jpg');
+		justify-content: center;
+	}
 
-   .hero {
-      margin-left: 0;
-      justify-content: center;
-      align-items: center;
-   }
+	.hero {
+		margin-left: 0;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.hero h1 {
+		text-align: center;
+	}
+
+	.hero p {
+		text-align: center;
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: 480px) {
-   .home {
-      background-image: url('../assets/home/mobile/image-header.jpg');
-   }
+	.home {
+		background-image: url('../assets/home/mobile/image-header.jpg');
+	}
+
+	.hero p {
+		padding: 0 2rem;
+	}
 }

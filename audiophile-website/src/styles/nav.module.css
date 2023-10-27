@@ -31,12 +31,27 @@
 	letter-spacing: 0.125rem;
 	text-transform: uppercase;
 	text-decoration: none;
+	transition: 150ms ease-in;
+}
+
+.burgerMenu {
+	display: none;
+   cursor: pointer;
+}
+
+/* hover states */
+.navLink a:hover {
+	color: var(--primary);
 }
 
 @media screen and (max-width: 1024px) {
 	.navLink {
 		display: none;
 	}
+
+   .burgerMenu {
+      display: block;
+   }
 }
 
 @media screen and (max-width: 767px) {

@@ -2,41 +2,43 @@ import Button from '../components/Button';
 import styles from '../styles/home.module.css';
 const Home = () => {
 	return (
-		<div className={styles.home}>
-			<div className={styles.hero}>
-				<p className='overline text-white' style={{
-               opacity: '0.5'
-            }}>New Product</p>
-				<div
-					className='product-desc'
-					style={{
-						marginBottom: '1rem',
-					}}
-				>
-					<h1
-						className='text--h1 text-white'
-						style={{
-							marginBottom: '1.5rem',
-						}}
-					>
-						XX99 Mark II Headphones
-					</h1>
+		<div className={styles.homeContainer}>
+			<div className={styles.home}>
+				<div className={styles.hero}>
 					<p
-						className='text-white'
+						className='overline text-white'
 						style={{
-							width: '90%',
+							opacity: '0.5',
 						}}
 					>
-						Experience natural, lifelike audio and exceptional build quality
-						made for the passionate music enthusiast.
+						New Product
 					</p>
+					<div
+						className='product-desc'
+						style={{
+							marginBottom: '1rem',
+						}}
+					>
+						<h1
+							className='text--h1 text-white'
+							style={{
+								marginBottom: '1.5rem',
+							}}
+						>
+							XX99 Mark II Headphones
+						</h1>
+						<p className='text-white'>
+							Experience natural, lifelike audio and exceptional build quality
+							made for the passionate music enthusiast.
+						</p>
+					</div>
+					<Button
+						variant='primary'
+						onClick={() => alert('sdf')}
+					>
+						See Product
+					</Button>
 				</div>
-				<Button
-					variant='primary'
-					onClick={() => alert('sdf')}
-				>
-					See Product
-				</Button>
 			</div>
 		</div>
 	);

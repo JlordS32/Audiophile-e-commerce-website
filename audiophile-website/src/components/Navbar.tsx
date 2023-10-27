@@ -4,18 +4,30 @@ import { NavLink } from 'react-router-dom';
 import styles from '../styles/nav.module.css';
 import companyLogo from '../assets/shared/desktop/logo.svg';
 import cartIcon from '../assets/shared/desktop/icon-cart.svg';
+import burgerIcon from '../assets/shared/tablet/icon-hamburger.svg'
 
 const Navbar = () => {
 	return (
 		<div className={styles.nav}>
-			<NavLink to='/'>
-				<div className='logo'>
+			<div className='d-flex'>
+				<div className={styles.burgerMenu}>
 					<img
-						src={companyLogo}
-						alt='company logo'
+						src={burgerIcon}
+						alt='menu icon'
+                  style={{
+                     marginRight: '2.7rem',
+                  }}
 					/>
 				</div>
-			</NavLink>
+				<NavLink to='/'>
+					<div className='logo'>
+						<img
+							src={companyLogo}
+							alt='company logo'
+						/>
+					</div>
+				</NavLink>
+			</div>
 
 			<div className={styles.navLink}>
 				<NavLink to='/'>
