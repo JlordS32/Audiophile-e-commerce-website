@@ -1,15 +1,24 @@
 import { ReactNode } from 'react';
 import styles from '../styles/buttons.module.css';
-import '../styles/buttons.module.css'
+import '../styles/buttons.module.css';
 
 type ButtonProps = {
 	variant: string;
-   children?: ReactNode
+	children?: ReactNode;
+	onClick?: () => void;
 };
 
-const Button = ({ variant, children }: ButtonProps) => {
+const Button = ({ variant, children, onClick }: ButtonProps) => {
 	return (
-		<div className={`${styles.btn} ${styles[`btn--${variant}`]}`}>{children}</div>
+		<div
+			className={`${styles.btn} ${styles[`btn--${variant}`]}`}
+			onClick={() => {
+            if (!onClick) return;
+            onClick();
+         }}
+		>
+			{children}
+		</div>
 	);
 };
 

@@ -9,10 +9,10 @@
 	--grey: hsl(0, 0%, 95%);
 	--neutral-black: hsl(0, 0%, 6%);
 	--black: hsl(0, 0%, 0%);
-   --error: hsl(0, 65%, 49%);
-   --form-outline: hsl(0, 0%, 81%);
+	--error: hsl(0, 65%, 49%);
+	--form-outline: hsl(0, 0%, 81%);
 
-	/* typography */  
+	/* typography */
 	--font-family: 'Manrope', normal;
 	--font-size: 15px;
 	--line-height: 25px;
@@ -22,6 +22,7 @@
 	--btn-1-hover: var(--secondary);
 	--btn-2: var(--light-grey);
 	--btn-2-hover: var(--black);
+	--btn-font-size: 0.8125rem;
 
 	font-family: var(--font-family);
 	font-size: var(--font-size);
@@ -41,53 +42,61 @@
 }
 
 body {
-   background: var(--white);
+	background: var(--white);
 }
 
 .text--h1 {
-   font-size: 56px;
-   line-height: 56px;
-   letter-spacing: 2px;
-   text-transform: uppercase;
+	font-size: 56px;
+	line-height: 56px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
 }
 
 .text--h2 {
-   font-size: 40px;
-   line-height: 44px;
-   letter-spacing: 1.5px;
-   text-transform: uppercase;
+	font-size: 40px;
+	line-height: 44px;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
 }
 
 .text--h3 {
-   font-size: 32px;
-   line-height: 36px;
-   letter-spacing: 1.15px;
-   text-transform: uppercase;
+	font-size: 32px;
+	line-height: 36px;
+	letter-spacing: 1.15px;
+	text-transform: uppercase;
 }
 
 .text--h4 {
-   font-size: 28px;
-   line-height: 38px;
-   letter-spacing: 2px;
-   text-transform: uppercase;
+	font-size: 28px;
+	line-height: 38px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
 }
 
 .text--h5 {
-   font-size: 24px;
-   line-height: 33px;
-   letter-spacing: 1.7px;
-   text-transform: uppercase;
+	font-size: 24px;
+	line-height: 33px;
+	letter-spacing: 1.7px;
+	text-transform: uppercase;
 }
 
 .text--h6 {
-   font-size: 18px;
-   line-height: 24px;
-   letter-spacing: 1.3px;
-   text-transform: uppercase;
+	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 1.3px;
+	text-transform: uppercase;
 }
 
 .overline {
-   letter-spacing: 10px;
-   font-size: 14px;
-   text-transform: uppercase;
+	letter-spacing: 10px;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.text-white {
+	color: var(--white) !important;
+}
+
+.text-balance {
+	text-wrap: balance !important;
 }

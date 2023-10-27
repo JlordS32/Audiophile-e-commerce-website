@@ -1,0 +1,38 @@
+.home {
+	background-image: url('../assets/home/desktop/image-hero.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100%;
+	min-height: 100vh;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+}
+
+.hero {
+   width: 26rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem 0;
+   margin-left: 10.5rem;
+}
+
+@media screen and (max-width: 767px) {
+   .home {
+      background-image: url('../assets/home/tablet/image-header.jpg');
+      justify-content: center;
+   }
+
+   .hero {
+      margin-left: 0;
+      justify-content: center;
+      align-items: center;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .home {
+      background-image: url('../assets/home/mobile/image-header.jpg');
+   }
+}

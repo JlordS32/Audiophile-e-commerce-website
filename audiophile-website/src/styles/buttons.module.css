@@ -10,7 +10,7 @@
 	cursor: pointer;
 
 	/* typography */
-	font-size: 0.8125rem;
+	font-size: var(--btn-font-size);
 	font-weight: 700;
 	letter-spacing: 0.0625rem;
 	text-transform: uppercase;
