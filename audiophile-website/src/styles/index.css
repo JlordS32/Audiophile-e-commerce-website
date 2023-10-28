@@ -102,17 +102,25 @@ body {
 }
 
 .d-flex {
-   display: flex;
+	display: flex;
 }
 
 .justify-content-center {
-   justify-content: center;
+	justify-content: center;
 }
 
 .align-items-center {
-   align-items: center;
+	align-items: center;
 }
 
 .flex-column {
-   flex-direction: column;
+	flex-direction: column;
+}
+
+.standout {
+	color: var(--primary);
+}
+
+.font-weight-700 {
+   font-weight: 700;
 }

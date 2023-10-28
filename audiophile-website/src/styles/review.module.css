@@ -1,0 +1,39 @@
+.reviewContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.review {
+	width: 69.375rem;
+	height: 36.75rem;
+	display: flex;
+   justify-content: space-between;
+}
+
+.imgContainer img {
+	width: 33.75rem;
+	height: 36.75rem;
+	border-radius: 0.5rem;
+}
+
+.bestGearDesc {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem 0;
+}
+
+.bestGearDesc > div {
+	width: 27.8125rem;
+}
+
+.bestGearDesc p {
+	color: var(--black);
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1.5625rem;
+	opacity: 0.5;
+	width: 27.8125rem;
+}

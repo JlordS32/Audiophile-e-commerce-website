@@ -4,7 +4,8 @@ import styles from '../styles/home.module.css';
 
 // image imports
 import zx9Img from '../assets/home/desktop/image-speaker-zx9.png';
-import circlePattern from '../assets/home/desktop/pattern-circles.svg';
+import earphonesPic from '../assets/home/desktop/image-earphones-yx1.jpg';
+import Review from '../components/Review';
 
 const Home = () => {
 	return (
@@ -84,7 +85,29 @@ const Home = () => {
 						<Button variant='dark-outline'>See Product</Button>
 					</div>
 				</article>
+
+				<article className={styles.earphonesDesc}>
+					<div>
+						<img
+							src={earphonesPic}
+							alt='earphones'
+						/>
+					</div>
+					<div>
+						<span
+							className='text--h4'
+							style={{
+								fontWeight: '700',
+							}}
+						>
+							YX1 Earphones
+						</span>
+						<Button variant='dark-outline'>See Product</Button>
+					</div>
+				</article>
 			</section>
+
+         <Review />
 		</div>
 	);
 };

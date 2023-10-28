@@ -60,22 +60,48 @@
 
 .zx7Section {
 	background-image: url(../assets/home/desktop/image-speaker-zx7.jpg);
-   width: 69.375rem;
-   height: 20rem;
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: contain;
-   margin-bottom: 3rem;
-   border-radius: 0.5rem;
-   display: flex;
+	width: 69.375rem;
+	height: 20rem;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin-bottom: 3rem;
+	border-radius: 0.5rem;
+	display: flex;
 }
 
 .zx7Desc {
-   display: flex;
-   flex-direction: column;
-   gap: 2rem;
-   justify-content: center;
-   margin-left: 7rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	justify-content: center;
+	margin-left: 7rem;
+}
+
+.earphonesDesc {
+	display: flex;
+	width: 69.375rem;
+   margin-bottom: 12.5rem;
+	justify-content: space-between;
+}
+
+.earphonesDesc > div:first-child img {
+	width: 33.75rem;
+	height: 20rem;
+	border-radius: 0.5rem;
+	flex-shrink: 0;
+}
+
+.earphonesDesc > div:last-child {
+	width: 33.75rem;
+	height: 20rem;
+	border-radius: 0.5rem;
+	background: #f1f1f1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 2rem 0;
+	padding-left: 6rem;
 }
 
 @media screen and (max-width: 767px) {
