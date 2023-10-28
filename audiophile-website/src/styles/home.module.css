@@ -4,7 +4,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	width: 100%;
-   height: 100vh;
+	height: 100vh;
 	display: flex;
 	justify-content: start;
 	align-items: center;
@@ -22,9 +22,65 @@
 	width: 90%;
 }
 
+.zx9SpeakerSection {
+	margin-bottom: 3rem;
+	width: 69.375rem;
+	height: 35rem;
+	border-radius: 0.5rem;
+	background-color: var(--primary);
+	background-image: url(../assets/home/desktop/pattern-circles.svg);
+	background-repeat: no-repeat;
+	background-size: 59rem 59rem;
+	background-position-x: -10rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: white !important;
+	overflow: hidden;
+	position: relative;
+}
+
+.imgContainer {
+	position: absolute;
+	top: 20%;
+	left: 10.75%;
+}
+
+.zx9SpeakerDesc {
+	width: 34%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem 0;
+	margin-right: 6rem;
+}
+
+.zx9SpeakerDesc p {
+	margin-bottom: 1rem;
+}
+
+.zx7Section {
+	background-image: url(../assets/home/desktop/image-speaker-zx7.jpg);
+   width: 69.375rem;
+   height: 20rem;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: contain;
+   margin-bottom: 3rem;
+   border-radius: 0.5rem;
+   display: flex;
+}
+
+.zx7Desc {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+   justify-content: center;
+   margin-left: 7rem;
+}
+
 @media screen and (max-width: 767px) {
 	.home {
-		background-image: url('../assets/home/tablet/image-header.jpg');
+		background-image: url(../assets/home/tablet/image-header.jpg);
 		justify-content: center;
 	}
 

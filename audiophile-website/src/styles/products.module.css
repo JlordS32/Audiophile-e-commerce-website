@@ -1,3 +1,10 @@
+.productsContainer {
+	display: flex;
+	justify-content: center;
+	gap: 0 1.9rem;
+   padding: 12.5rem 0;
+}
+
 .productHeadPhones,
 .productEarphones,
 .productSpeakers {
@@ -14,7 +21,7 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
-   padding: 1.9rem;
+	padding: 1.9rem;
 }
 
 .productHeadPhones > span,
@@ -22,18 +29,17 @@
 .productSpeakers > span {
 	font-weight: 700;
 	font-size: 1.125rem;
-   padding-bottom: 0.95rem;
+	padding-bottom: 0.95rem;
 }
-
 
 .productHeadPhones::before,
 .productEarphones::before,
 .productSpeakers::before {
 	content: '';
-   top: -37.5%;
-   left: 50%;
-   transform: translateX(-50%);
-   position: absolute;
+	top: -37.5%;
+	left: 50%;
+	transform: translateX(-50%);
+	position: absolute;
 	display: inline-block;
 	background-size: contain;
 	width: 13rem;
@@ -51,4 +57,29 @@
 
 .productEarphones::before {
 	background-image: url(../assets/shared/desktop/image-category-thumbnail-earphones.png);
+}
+
+@media screen and (max-width: 1050px) {
+	.productHeadPhones,
+	.productEarphones,
+	.productSpeakers {
+		width: 13.9375rem;
+		height: 10.3125rem;
+	}
+
+	.productHeadPhones::before,
+	.productEarphones::before,
+	.productSpeakers::before {
+		width: 10rem;
+      top: -40%;
+	}
+}
+
+@media screen and (max-width: 767px) {
+   .productsContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 6rem 0;
+      padding: 8rem;
+   }
 }

@@ -1,6 +1,11 @@
 import Button from '../components/Button';
 import Products from '../components/Products';
 import styles from '../styles/home.module.css';
+
+// image imports
+import zx9Img from '../assets/home/desktop/image-speaker-zx9.png';
+import circlePattern from '../assets/home/desktop/pattern-circles.svg';
+
 const Home = () => {
 	return (
 		<div className={styles.homeContainer}>
@@ -41,10 +46,44 @@ const Home = () => {
 					</Button>
 				</div>
 			</div>
-			<section className='products-section' style={{
-            padding: '12.5rem 0'
-         }}>
-				<Products />
+
+			{/* Products section */}
+			<Products />
+
+			<section className='d-flex justify-content-center align-items-center flex-column'>
+				<article className={styles.zx9SpeakerSection}>
+					<div className={styles.imgContainer}>
+						<img
+							src={zx9Img}
+							alt='ZX9-Speaker-Image'
+							style={{
+								width: '24rem',
+							}}
+						/>
+					</div>
+					<div className={styles.zx9SpeakerDesc}>
+						<h1 className='text--h1'>Zx9 Speaker</h1>
+						<p>
+							Upgrade to premium speakers that are phenomenally built to deliver
+							truly remarkable sound.
+						</p>
+						<Button variant='dark'>See Product</Button>
+					</div>
+				</article>
+
+				<article className={styles.zx7Section}>
+					<div className={styles.zx7Desc}>
+						<span
+							className='text--h4'
+							style={{
+								fontWeight: '700',
+							}}
+						>
+							Zx7 Speaker
+						</span>
+						<Button variant='dark-outline'>See Product</Button>
+					</div>
+				</article>
 			</section>
 		</div>
 	);

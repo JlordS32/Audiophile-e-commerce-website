@@ -22,7 +22,8 @@
 	color: var(--white);
 }
 
-.btn--primary:hover {
+.btn--primary:hover,
+.btn--primary:active {
 	background-color: var(--btn-1-hover);
 }
 
@@ -31,7 +32,8 @@
 	color: var(--black);
 }
 
-.btn--dark-outline:hover {
+.btn--dark-outline:hover,
+.btn--dark-outline:active {
 	background-color: var(--black);
 	color: var(--white);
 }
@@ -41,22 +43,23 @@
 	color: var(--white);
 }
 
-.btn--dark:hover {
-	outline: 1px solid var(--neutral-black);
-	background-color: var(--light-grey);
-	color: var(--black);
+.btn--dark:hover,
+.btn--dark:active {
+	background-color: #4c4c4c;
+	color: var(--white);
 }
 
 .btn--link {
-   font-weight: 700;
+	font-weight: 700;
 	letter-spacing: 0.0625rem;
 	text-transform: uppercase;
 	transition: 150ms ease-in;
 	color: var(--black);
-   opacity: 0.5;
-   cursor: pointer;
+	opacity: 0.5;
+	cursor: pointer;
 }
 
-.btn--link:hover {
-   color: var(--primary);
+.btn--link:hover,
+.btn--link:active {
+	color: var(--primary);
 }

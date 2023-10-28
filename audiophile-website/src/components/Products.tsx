@@ -3,12 +3,8 @@ import Link from './Link';
 
 const Products = () => {
 	return (
-		<div
-			className='d-flex'
-			style={{
-				justifyContent: 'center',
-				gap: '0 1.9rem',
-			}}
+		<section
+			className={styles.productsContainer}
 		>
 			<div className={styles.productHeadPhones}>
 				<span className='text--h6'>Headphones</span>
@@ -22,7 +18,7 @@ const Products = () => {
 				<span className='text--h6'>Earphones</span>
 				<Link>Shop</Link>
 			</div>
-		</div>
+		</section>
 	);
 };
 
