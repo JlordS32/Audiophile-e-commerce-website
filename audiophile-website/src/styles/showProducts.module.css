@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+	justify-content: center;
+	margin-top: 10rem;
+}
+
+.product {
+	width: clamp(20.4375rem, 95%, 69.375rem);
+	display: flex;
+}
+
+.imgContainer {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 33.75rem;
+	aspect-ratio: 1 / 1;
+	border-radius: 0.5rem;
+}
+
+.productDesc {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	width: 27.8125rem;
+}
+
+.productDesc h2 {
+	margin-bottom: 2rem;
+}
+
+.productDesc p {
+	margin-bottom: 2.5rem;
+}

@@ -4,8 +4,8 @@ import styles from '../styles/home.module.css';
 
 // image imports
 import zx9Img from '../assets/home/desktop/image-speaker-zx9.png';
-import earphonesPic from '../assets/home/desktop/image-earphones-yx1.jpg';
 import Review from '../components/Review';
+import Footer from '../components/Footer';
 
 const Home = () => {
 	return (
@@ -57,9 +57,6 @@ const Home = () => {
 						<img
 							src={zx9Img}
 							alt='ZX9-Speaker-Image'
-							style={{
-								width: '24rem',
-							}}
 						/>
 					</div>
 					<div className={styles.zx9SpeakerDesc}>
@@ -88,10 +85,6 @@ const Home = () => {
 
 				<article className={styles.earphonesDesc}>
 					<div>
-						<img
-							src={earphonesPic}
-							alt='earphones'
-						/>
 					</div>
 					<div>
 						<span
@@ -107,7 +100,10 @@ const Home = () => {
 				</article>
 			</section>
 
+         {/* Review section about Audiophile */}
          <Review />
+
+         <Footer />
 		</div>
 	);
 };

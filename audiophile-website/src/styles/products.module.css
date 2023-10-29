@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: center;
 	gap: 0 1.9rem;
-   padding: 12.5rem 0;
+   padding: 12.5rem 0
 }
 
 .productHeadPhones,
@@ -59,7 +59,11 @@
 	background-image: url(../assets/shared/desktop/image-category-thumbnail-earphones.png);
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1024px) {
+   .productsContainer {
+      padding: 9rem 0 6rem 0;
+   }
+
 	.productHeadPhones,
 	.productEarphones,
 	.productSpeakers {

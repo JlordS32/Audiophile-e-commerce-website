@@ -3,19 +3,19 @@ import styles from '../styles/buttons.module.css';
 import '../styles/buttons.module.css';
 
 type ButtonProps = {
-	variant: string;
+	variant?: string;
 	children?: ReactNode;
 	onClick?: () => void;
 };
 
-const Button = ({ variant, children, onClick }: ButtonProps) => {
+const Button = ({ variant = 'primary', children, onClick }: ButtonProps) => {
 	return (
 		<div
 			className={`${styles.btn} ${styles[`btn--${variant}`]}`}
 			onClick={() => {
-            if (!onClick) return;
-            onClick();
-         }}
+				if (!onClick) return;
+				onClick();
+			}}
 		>
 			{children}
 		</div>

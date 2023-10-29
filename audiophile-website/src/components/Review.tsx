@@ -1,12 +1,11 @@
 import styles from '../styles/review.module.css';
-import bestGear from '../assets/shared/desktop/image-best-gear.jpg';
 
 const Review = () => {
 	return (
 		<section className={styles.reviewContainer}>
 			<div className={styles.review}>
 				<div className={styles.bestGearDesc}>
-					<div className='text--h2 font-weight-700'>
+					<div className={styles.title}>
 						Bringing you the <span className='standout'>best</span> audio gear
 					</div>
 					<p>
@@ -20,10 +19,6 @@ const Review = () => {
 				</div>
 
 				<div className={styles.imgContainer}>
-					<img
-						src={bestGear}
-						alt='asdf'
-					/>
 				</div>
 			</div>
 		</section>
