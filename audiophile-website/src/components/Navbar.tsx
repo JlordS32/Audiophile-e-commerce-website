@@ -1,22 +1,38 @@
-// rrd imports
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
+// rrd imports
+import { NavLink, useLocation } from 'react-router-dom';
+
+// styles
 import styles from '../styles/nav.module.css';
+
+// images
 import companyLogo from '../assets/shared/desktop/logo.svg';
 import cartIcon from '../assets/shared/desktop/icon-cart.svg';
-import burgerIcon from '../assets/shared/tablet/icon-hamburger.svg'
+import burgerIcon from '../assets/shared/tablet/icon-hamburger.svg';
 
 const Navbar = () => {
+	const location = useLocation();
+
+	const pathname: Array<string> = ['/headphones'];
+
+	const pageBlackBg = pathname.find((item) => item === location.pathname);
+
 	return (
-		<div className={styles.nav}>
+		<div
+			className={styles.nav}
+			style={{
+				backgroundColor: pageBlackBg ? 'black' : 'transparent',
+			}}
+		>
 			<div className='d-flex'>
 				<div className={styles.burgerMenu}>
 					<img
 						src={burgerIcon}
 						alt='menu icon'
-                  style={{
-                     marginRight: '2.7rem',
-                  }}
+						style={{
+							marginRight: '2.7rem',
+						}}
 					/>
 				</div>
 				<NavLink to='/'>

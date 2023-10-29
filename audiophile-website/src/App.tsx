@@ -18,6 +18,7 @@ import Earphones from './pages/Earphones';
 
 // library
 import { ToastContainer } from 'react-toastify';
+import ProductPage from './pages/ProductPage';
 
 const App = () => {
 	const router = createBrowserRouter([
@@ -44,6 +45,11 @@ const App = () => {
 				{
 					path: 'earphones',
 					element: <Earphones />,
+					errorElement: <NotFound />,
+				},
+				{
+					path: 'product/:productName',
+					element: <ProductPage />,
 					errorElement: <NotFound />,
 				},
 			],

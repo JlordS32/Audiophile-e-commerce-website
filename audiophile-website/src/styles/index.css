@@ -29,7 +29,6 @@
 	line-height: var(--line-height);
 }
 
-
 * {
 	/* css resets */
 	margin: 0;
@@ -44,6 +43,10 @@
 
 body {
 	background: var(--white);
+}
+
+a {
+	text-decoration: none;
 }
 
 .text--h1 {

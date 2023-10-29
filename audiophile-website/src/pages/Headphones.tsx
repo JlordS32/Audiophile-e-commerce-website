@@ -10,9 +10,6 @@ import xx99Img from '../assets/product-xx99-mark-two-headphones/desktop/image-pr
 import xx99MarkI from '../assets/product-xx99-mark-one-headphones/desktop/image-product.jpg';
 import xx59Img from '../assets/product-xx59-headphones/desktop/image-product.jpg';
 
-// styles 
-import styles from '../assets/product'
-
 const Headphones = () => {
 	return (
 		<div>

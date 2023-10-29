@@ -1,3 +1,7 @@
+// rrd imports
+import { Link as RRDLink } from 'react-router-dom';
+
+// components
 import Button from '../components/Button';
 import Products from '../components/Products';
 import styles from '../styles/home.module.css';
@@ -39,12 +43,9 @@ const Home = () => {
 							made for the passionate music enthusiast.
 						</p>
 					</div>
-					<Button
-						variant='primary'
-						onClick={() => alert('sdf')}
-					>
-						See Product
-					</Button>
+					<RRDLink to={`/product/xx99-mark-ii-headphones`}>
+						<Button>See Product</Button>
+					</RRDLink>
 				</div>
 			</div>
 
@@ -65,7 +66,9 @@ const Home = () => {
 							Upgrade to premium speakers that are phenomenally built to deliver
 							truly remarkable sound.
 						</p>
-						<Button variant='dark'>See Product</Button>
+						<RRDLink to={`/product/zx9-speaker`}>
+							<Button variant='dark'>See Product</Button>
+						</RRDLink>
 					</div>
 				</article>
 
@@ -79,13 +82,14 @@ const Home = () => {
 						>
 							Zx7 Speaker
 						</span>
-						<Button variant='dark-outline'>See Product</Button>
+						<RRDLink to={`/product/zx7-speaker`}>
+							<Button variant='dark-outline'>See Product</Button>
+						</RRDLink>
 					</div>
 				</article>
 
 				<article className={styles.earphonesDesc}>
-					<div>
-					</div>
+					<div></div>
 					<div>
 						<span
 							className='text--h4'
@@ -95,15 +99,17 @@ const Home = () => {
 						>
 							YX1 Earphones
 						</span>
-						<Button variant='dark-outline'>See Product</Button>
+						<RRDLink to={`/product/yx1-earphones`}>
+							<Button variant='dark-outline'>See Product</Button>
+						</RRDLink>
 					</div>
 				</article>
 			</section>
 
-         {/* Review section about Audiophile */}
-         <Review />
+			{/* Review section about Audiophile */}
+			<Review />
 
-         <Footer />
+			<Footer />
 		</div>
 	);
 };
