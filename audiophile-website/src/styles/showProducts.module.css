@@ -41,12 +41,20 @@
 
 	.imgContainer {
 		order: 0 !important;
-      background-size: contain;
-      background-color: var(--grey);
+		background-size: contain;
+		background-color: var(--grey);
+		height: 22rem;
 	}
-   
+
 	.productDesc {
 		order: 1 !important;
-      margin: 0 !important;
+		margin: 0 !important;
+		width: 100%;
+		align-items: center;
+		margin-top: 3.5rem !important;
 	}
+
+   .productDesc p, .productDesc h2 {
+      text-align: center;
+   }
 }
