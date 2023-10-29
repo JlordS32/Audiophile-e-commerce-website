@@ -1,5 +1,9 @@
 // rrd import
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+	createBrowserRouter,
+	RouterProvider,
+	ScrollRestoration,
+} from 'react-router-dom';
 
 // context
 import { ShoppingCartProvider } from './context/ShoppingCartContext';

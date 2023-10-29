@@ -1,5 +1,5 @@
 // rrd imports
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 // component imports
 import Navbar from '../components/Navbar';
@@ -10,6 +10,7 @@ const Main = () => {
 			<main>
 				<Outlet />
 			</main>
+         <ScrollRestoration />
 		</div>
 	);
 };
