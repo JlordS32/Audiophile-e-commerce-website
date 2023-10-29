@@ -33,3 +33,20 @@
 .productDesc p {
 	margin-bottom: 2.5rem;
 }
+
+@media screen and (max-width: 1024px) {
+	.product {
+		flex-direction: column;
+	}
+
+	.imgContainer {
+		order: 0 !important;
+      background-size: contain;
+      background-color: var(--grey);
+	}
+   
+	.productDesc {
+		order: 1 !important;
+      margin: 0 !important;
+	}
+}

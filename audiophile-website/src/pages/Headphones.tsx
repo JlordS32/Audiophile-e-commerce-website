@@ -30,7 +30,7 @@ const Headphones = () => {
 							'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.'
 						}
 						title={'XX99 Mark I Headphones'}
-                  reverseOrder={true}
+						reverseOrder={true}
 					/>
 					<ShowProduct
 						imgUrl={xx59Img}
@@ -41,16 +41,16 @@ const Headphones = () => {
 					/>
 				</section>
 
-            <section>
-               <Products />
-            </section>
+				<section>
+					<Products />
+				</section>
 
-            <section>
-               <Review />
-            </section>
+				<section>
+					<Review />
+				</section>
 			</main>
 
-         <Footer />
+			<Footer />
 		</div>
 	);
 };

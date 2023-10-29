@@ -29,6 +29,7 @@
 	line-height: var(--line-height);
 }
 
+
 * {
 	/* css resets */
 	margin: 0;
@@ -122,5 +123,5 @@ body {
 }
 
 .font-weight-700 {
-   font-weight: 700;
+	font-weight: 700;
 }
