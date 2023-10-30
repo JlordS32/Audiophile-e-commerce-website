@@ -13,7 +13,7 @@ type ProductPageType = {
 	newProduct?: boolean;
 };
 
-const ProductPage = ({ newProduct = false }: ProductPageType) => {
+const ProductPage = ({ newProduct = true }: ProductPageType) => {
 	const { productName } = useParams();
 	const navigate = useNavigate();
 
@@ -35,7 +35,9 @@ const ProductPage = ({ newProduct = false }: ProductPageType) => {
 			<main>
 				<section className={styles.productContainer}>
 					<article className={styles.product}>
-						<div className={styles.imgContainer}>
+						<div className={styles.imgContainer} style={{
+							backgroundImage: `url${imgUrl}`
+						}}>
 							<img
 								src={imgUrl}
 								alt={productName}
@@ -57,7 +59,7 @@ const ProductPage = ({ newProduct = false }: ProductPageType) => {
 								</p>
 							)}
 
-							<h2 className={`${styles.title} text--h2`}>
+							<h2 className={`${styles.title}`}>
 								XX99 Mark ii headphones
 							</h2>
 
@@ -123,21 +125,15 @@ const ProductPage = ({ newProduct = false }: ProductPageType) => {
 
 					<article>
 						<div className={styles.showcaseGallery}>
-							<img
-								className='showcaseImage'
-								src={`../../product-${productName}/desktop/image-gallery-1.jpg`}
-								alt='Image 1'
-							/>
-							<img
-								className='showcaseImage'
-								src={`../../product-${productName}/desktop/image-gallery-2.jpg`}
-								alt='Image 2'
-							/>
-							<img
-								className='showcaseImage'
-								src={`../../product-${productName}/desktop/image-gallery-3.jpg`}
-								alt='Image 3'
-							/>
+							<div className={styles.showcaseImg} style={{
+								backgroundImage: `url(../../product-${productName}/desktop/image-gallery-1.jpg)`
+							}}></div>
+							<div className={styles.showcaseImg} style={{
+								backgroundImage: `url(../../product-${productName}/desktop/image-gallery-2.jpg)`
+							}}></div>
+							<div className={styles.showcaseImg} style={{
+								backgroundImage: `url(../../product-${productName}/desktop/image-gallery-3.jpg)`
+							}}></div>
 						</div>
 					</article>
 				</section>
