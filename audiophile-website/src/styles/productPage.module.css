@@ -189,11 +189,16 @@
 	flex-direction: column;
 	gap: 2.5rem 0;
 	align-items: center;
+}
+
+.productRecommendation div {
+	display: flex;
+	align-items: center;
 	justify-content: center;
 }
 
 .productRecommendation div img {
-	width: 21.875rem;
+	width: clamp(15rem, 95%, 21.875rem);
 	border-radius: 0.5rem;
 }
 
@@ -236,7 +241,7 @@
 		height: 10.875rem;
 	}
 
-	.title {
+	.title {	
 		font-size: 1.75rem;
 	}
 
@@ -262,6 +267,22 @@
 	.showcaseGallery {
 		margin: 5rem 0;
 	}
+
+	.recommendedProducts {
+		flex-direction: column;
+		gap: 3.5rem 0;
+	}
+
+	.productRecommendation > div:first-child {
+		background-color: var(--grey);
+		border-radius: 0.5rem;
+		width: 100%;
+	}
+
+	.productRecommendation > div:first-child img {
+		width: 16rem;
+	}
+
 }
 
 @media screen and (max-width: 620px) {

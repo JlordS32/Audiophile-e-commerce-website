@@ -95,6 +95,10 @@ footer a:hover {
       gap: 3rem 0;
 	}
 
+	.links {
+		text-align: center;
+	}
+
 	.copyright,
 	.socialMedia,
 	.info,

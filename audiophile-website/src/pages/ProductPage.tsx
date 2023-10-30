@@ -19,6 +19,9 @@ import { formatCurrency, getBestRecommended } from '../utility/utilities';
 import data from '../data/data.json';
 import Products from '../components/Products';
 
+// images
+import errorImg from '../assets/failedLoadingImg.jpg';
+
 interface GalleryType {
 	[0]: string;
 	[1]: {
@@ -57,6 +60,11 @@ const ProductPage = () => {
 		gallery,
 	} = productData;
 
+	const handleImageError = (e: React.SyntheticEvent) => {
+		const target = e.target as HTMLImageElement;
+		target.src = errorImg;
+	};
+
 	// Split feature description
 	const featureDescription = features.split('\n');
 
@@ -79,10 +87,16 @@ const ProductPage = () => {
 						<img
 							src={product.categoryImage.desktop}
 							alt={product.name}
+							onError={handleImageError}
 						/>
 					</div>
 					<p className='display-text'>{product.name}</p>
-					<RRDLink to={`/product/${product.slug}`}>
+					<RRDLink
+						to={`/product/${product.slug}`}
+						style={{
+							marginTop: 'auto',
+						}}
+					>
 						<Button>See Product</Button>
 					</RRDLink>
 				</div>
@@ -99,14 +113,20 @@ const ProductPage = () => {
 	 */
 	const renderShowCaseGallery = (gallery: GalleryType[]): ReactNode => {
 		const galleryNodeElement: ReactNode = gallery.map((item, index) => {
+			const backgroundImageStyle = {
+				backgroundImage: `url(${item[1].desktop}), url(${errorImg})`,
+			};
+
+			const isValidImage = item[1].desktop && item[1].desktop.length > 0;
+
 			return (
 				<div
 					className={styles.showcaseImg}
-					style={{
-						backgroundImage: `url(${item[1].desktop})`,
-					}}
+					style={isValidImage ? backgroundImageStyle : {}}
 					key={index}
-				></div>
+				>
+					{!isValidImage && <div>Failed to load image!</div>}
+				</div>
 			);
 		});
 
@@ -164,6 +184,7 @@ const ProductPage = () => {
 								style={{
 									width: '100%',
 								}}
+								onError={handleImageError}
 							/>
 						</div>
 

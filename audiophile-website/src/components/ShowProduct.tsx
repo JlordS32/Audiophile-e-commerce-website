@@ -8,6 +8,8 @@ import slugify from 'slugify';
 // rrd imports
 import { Link as RrdLink } from 'react-router-dom';
 
+import errorImg from '../assets/failedLoadingImg.jpg';
+
 type ShowProductProps = {
 	imgUrl: string;
 	description: string;
@@ -37,7 +39,7 @@ const ShowProduct = ({
 				<div
 					className={styles.imgContainer}
 					style={{
-						backgroundImage: `url(${imgUrl})`,
+						backgroundImage: `url(${imgUrl}), url(${errorImg})`,
 						order: reverseOrder ? '1' : '0',
 					}}
 				></div>
