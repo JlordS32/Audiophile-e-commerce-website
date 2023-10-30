@@ -14,6 +14,7 @@ type ShowProductProps = {
 	title: string;
 	newProduct?: true | false;
 	reverseOrder?: true | false;
+	slug?: string;
 };
 
 const ShowProduct = ({
@@ -22,13 +23,14 @@ const ShowProduct = ({
 	title,
 	newProduct = false,
 	reverseOrder = false,
+	slug,
 }: ShowProductProps) => {
 	// slugify title for url
 	const slugifiedTitle = slugify(title, {
 		replacement: '-',
 		lower: true,
 	});
-	
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.product}>
@@ -60,7 +62,7 @@ const ShowProduct = ({
 					)}
 					<h2 className='text--h2'>{title}</h2>
 					<p>{description}</p>
-					<RrdLink to={`/product/${slugifiedTitle}`}>
+					<RrdLink to={`/product/${slug ? slug : slugifiedTitle}`}>
 						<Button>See Product</Button>
 					</RrdLink>
 				</div>

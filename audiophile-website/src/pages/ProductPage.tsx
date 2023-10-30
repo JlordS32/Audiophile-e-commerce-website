@@ -1,4 +1,10 @@
+// react
+import { useEffect } from 'react';
+
+// rrd
 import { useParams, useNavigate } from 'react-router-dom';
+
+// styles
 import styles from '../styles/productPage.module.css';
 
 // components
@@ -8,21 +14,29 @@ import Form from '../components/Form';
 import Button from '../components/Button';
 import { formatCurrency } from '../utility/utilities';
 
-// typees
-type ProductPageType = {
-	newProduct?: boolean;
-};
+// data imports
+import data from '../data/data.json';
 
-const ProductPage = ({ newProduct = true }: ProductPageType) => {
+const ProductPage = () => {
+	// rrd hooks
 	const { productName } = useParams();
 	const navigate = useNavigate();
 
-	const featuresDescription =
-		'Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive controls designed for any situation. Whether you’re taking a business call or just in your own personal space, the auto on/off and pause features ensure that you’ll never miss a beat. \n The advanced Active Noise Cancellation with built-in equalizer allow you to experience your audio world on your terms. It lets you enjoy your audio in peace, but quickly interact with your surroundings when you need to. Combined with Bluetooth 5.0 compliant connectivity and 17 hour battery life, the XX99 Mark II headphones gives you superior sound, cutting-edge technology, and a modern design aesthetic.';
+	// filtering data
+	const productData = data.filter((data) => data.slug === productName)[0];
 
-	const descriptions = featuresDescription.split('\n');
+	// destructuring data
+	const {
+		features,
+		categoryImage,
+		new: isNewProduct,
+		name,
+		description,
+		price,
+		includes,
+	} = productData;
 
-	const imgUrl = `../../product-${productName}/desktop/image-product.jpg`;
+	const featureDescription = features.split('\n');
 
 	return (
 		<div className={styles.productPage}>
@@ -35,11 +49,9 @@ const ProductPage = ({ newProduct = true }: ProductPageType) => {
 			<main>
 				<section className={styles.productContainer}>
 					<article className={styles.product}>
-						<div className={styles.imgContainer} style={{
-							backgroundImage: `url${imgUrl}`
-						}}>
+						<div className={styles.imgContainer}>
 							<img
-								src={imgUrl}
+								src={categoryImage.desktop}
 								alt={productName}
 								style={{
 									width: '100%',
@@ -48,7 +60,7 @@ const ProductPage = ({ newProduct = true }: ProductPageType) => {
 						</div>
 
 						<div className={styles.productDesc}>
-							{newProduct && (
+							{isNewProduct && (
 								<p
 									className='overline'
 									style={{
@@ -59,18 +71,11 @@ const ProductPage = ({ newProduct = true }: ProductPageType) => {
 								</p>
 							)}
 
-							<h2 className={`${styles.title}`}>
-								XX99 Mark ii headphones
-							</h2>
+							<h2 className={`${styles.title}`}>{name}</h2>
 
-							<div className={styles.desc}>
-								The new XX99 Mark II headphones is the pinnacle of pristine
-								audio. It redefines your premium headphone experience by
-								reproducing the balanced depth and precision of studio-quality
-								sound.
-							</div>
+							<div className={styles.desc}>{description}</div>
 
-							<div className={styles.price}>{formatCurrency(2999)}</div>
+							<div className={styles.price}>{formatCurrency(price)}</div>
 
 							<div className={styles.addToCart}>
 								<Form.Counter />
@@ -90,8 +95,10 @@ const ProductPage = ({ newProduct = true }: ProductPageType) => {
 									flexDirection: 'column',
 								}}
 							>
-								{descriptions.map((desc, index) => {
-									return <p key={index}>{desc}</p>;
+								{featureDescription.map((desc, index) => {
+									if (desc !== '') {
+										return <p key={index}>{desc}</p>;
+									}
 								})}
 							</div>
 						</div>
@@ -99,41 +106,38 @@ const ProductPage = ({ newProduct = true }: ProductPageType) => {
 						<div className={styles.inTheBox}>
 							<h3 className='text--h3'>In the box</h3>
 							<ul>
-								<li>
-									<span className={styles.quantity}>1x</span>
-									<span className={styles.item}>Headphone Unit</span>
-								</li>
-								<li>
-									<span className={styles.quantity}>2x</span>
-									<span className={styles.item}>Replacement Earcups</span>
-								</li>
-								<li>
-									<span className={styles.quantity}>1x</span>
-									<span className={styles.item}>User Manual</span>
-								</li>
-								<li>
-									<span className={styles.quantity}>1x</span>
-									<span className={styles.item}>3.5mm 5m Audio Cable</span>
-								</li>
-								<li>
-									<span className={styles.quantity}>1x</span>
-									<span className={styles.item}>Travel Bag</span>
-								</li>
+								{includes.map((item) => {
+									return (
+										<li>
+											<span className={styles.quantity}>{item.quantity}x</span>
+											<span className={styles.item}>{item.item}</span>
+										</li>
+									);
+								})}
 							</ul>
 						</div>
 					</article>
 
 					<article>
 						<div className={styles.showcaseGallery}>
-							<div className={styles.showcaseImg} style={{
-								backgroundImage: `url(../../product-${productName}/desktop/image-gallery-1.jpg)`
-							}}></div>
-							<div className={styles.showcaseImg} style={{
-								backgroundImage: `url(../../product-${productName}/desktop/image-gallery-2.jpg)`
-							}}></div>
-							<div className={styles.showcaseImg} style={{
-								backgroundImage: `url(../../product-${productName}/desktop/image-gallery-3.jpg)`
-							}}></div>
+							<div
+								className={styles.showcaseImg}
+								style={{
+									backgroundImage: `url(../../product-${productName}/desktop/image-gallery-1.jpg)`,
+								}}
+							></div>
+							<div
+								className={styles.showcaseImg}
+								style={{
+									backgroundImage: `url(../../product-${productName}/desktop/image-gallery-2.jpg)`,
+								}}
+							></div>
+							<div
+								className={styles.showcaseImg}
+								style={{
+									backgroundImage: `url(../../product-${productName}/desktop/image-gallery-3.jpg)`,
+								}}
+							></div>
 						</div>
 					</article>
 				</section>

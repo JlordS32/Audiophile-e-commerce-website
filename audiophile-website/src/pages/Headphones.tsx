@@ -25,7 +25,7 @@ const Headphones = () => {
 			<main>
 				<section>
 					{headphones.map((headphone, index) => {
-						const { id, categoryImage, description, new: isNew, name } = headphone;
+						const { id, categoryImage, description, new: isNew, name, slug } = headphone;
 						if (index % 2 === 0) {
 							return (
 								<ShowProduct
@@ -35,6 +35,7 @@ const Headphones = () => {
 									reverseOrder={true}
 									newProduct={isNew ?? false}
 									key={id}
+									slug={slug}
 								/>
 							);
 						} else {
@@ -45,6 +46,7 @@ const Headphones = () => {
 									title={name}
 									newProduct={isNew ?? false}
 									key={id}
+									slug={slug}
 								/>
 							);
 						}
