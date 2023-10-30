@@ -5,12 +5,17 @@ import Products from '../components/Products';
 import Review from '../components/Review';
 import Footer from '../components/Footer';
 
-// images
-import xx99Img from '../assets/product-xx99-mark-ii-headphones/desktop/image-product.jpg';
-import xx99MarkI from '../assets/product-xx99-mark-i-headphones/desktop/image-product.jpg';
-import xx59Img from '../assets/product-xx59-headphones/desktop/image-product.jpg';
+// data
+import data from '../data/data.json';
 
+type category = 'headphones';
 const Headphones = () => {
+
+	const category: category = 'headphones';
+
+	const headphones = data.filter((item) => item.category === category);
+	headphones.reverse();
+
 	return (
 		<div>
 			<Header>
@@ -19,29 +24,31 @@ const Headphones = () => {
 
 			<main>
 				<section>
-					<ShowProduct
-						imgUrl={xx99Img}
-						description={
-							'The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.'
+					{headphones.map((headphone, index) => {
+						const { id, categoryImage, description, new: isNew, name } = headphone;
+						if (index % 2 === 0) {
+							return (
+								<ShowProduct
+									imgUrl={categoryImage.desktop}
+									description={description}
+									title={name}
+									reverseOrder={true}
+									newProduct={isNew ?? false}
+									key={id}
+								/>
+							);
+						} else {
+							return (
+								<ShowProduct
+									imgUrl={categoryImage.desktop}
+									description={description}
+									title={name}
+									newProduct={isNew ?? false}
+									key={id}
+								/>
+							);
 						}
-						title={'XX99 Mark II Headphones'}
-						newProduct={true}
-					/>
-					<ShowProduct
-						imgUrl={xx99MarkI}
-						description={
-							'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.'
-						}
-						title={'XX99 Mark I Headphones'}
-						reverseOrder={true}
-					/>
-					<ShowProduct
-						imgUrl={xx59Img}
-						description={
-							'Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.'
-						}
-						title={'XX59 Headphones'}
-					/>
+					})}
 				</section>
 
 				<section>

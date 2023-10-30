@@ -7,7 +7,17 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Products from '../components/Products';
 import Review from '../components/Review';
+
+import data from '../data/data.json';
+
+// types
+type category = 'earphones';
 const Earphones = () => {
+	const category: category = 'earphones';
+
+	const earphones = data.filter((item) => item.category === category);
+	earphones.reverse();
+
 	return (
 		<div>
 			<Header>
@@ -16,14 +26,37 @@ const Earphones = () => {
 
 			<main>
 				<section>
-					<ShowProduct
-						imgUrl={yx1Image}
-						description={
-							'Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.'
+					{earphones.map((earphone, index) => {
+						const {
+							id,
+							categoryImage,
+							description,
+							new: isNew,
+							name,
+						} = earphone;
+						if (index % 2 === 0) {
+							return (
+								<ShowProduct
+									imgUrl={categoryImage.desktop}
+									description={description}
+									title={name}
+									reverseOrder={true}
+									newProduct={isNew ?? false}
+									key={id}
+								/>
+							);
+						} else {
+							return (
+								<ShowProduct
+									imgUrl={categoryImage.desktop}
+									description={description}
+									title={name}
+									newProduct={isNew ?? false}
+									key={id}
+								/>
+							);
 						}
-						title={'YX1 Wireless Earphones'}
-						newProduct={true}
-					/>
+					})}
 				</section>
 
 				<section>
