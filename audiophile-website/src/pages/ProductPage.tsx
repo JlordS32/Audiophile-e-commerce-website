@@ -17,6 +17,11 @@ const ProductPage = ({ newProduct = false }: ProductPageType) => {
 	const { productName } = useParams();
 	const navigate = useNavigate();
 
+	const featuresDescription =
+		'Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive controls designed for any situation. Whether you’re taking a business call or just in your own personal space, the auto on/off and pause features ensure that you’ll never miss a beat. \n The advanced Active Noise Cancellation with built-in equalizer allow you to experience your audio world on your terms. It lets you enjoy your audio in peace, but quickly interact with your surroundings when you need to. Combined with Bluetooth 5.0 compliant connectivity and 17 hour battery life, the XX99 Mark II headphones gives you superior sound, cutting-edge technology, and a modern design aesthetic.';
+
+	const descriptions = featuresDescription.split('\n');
+
 	const imgUrl = `../../product-${productName}/desktop/image-product.jpg`;
 
 	return (
@@ -72,45 +77,67 @@ const ProductPage = ({ newProduct = false }: ProductPageType) => {
 						</div>
 					</article>
 
-					<article>
-						<div className='features'>
+					<article className={styles.productDetails}>
+						<div className={styles.features}>
 							<h3 className='text--h3'>Features</h3>
-							<p>
-								Featuring a genuine leather head strap and premium earcups,
-								these headphones deliver superior comfort for those who like to
-								enjoy endless listening. It includes intuitive controls designed
-								for any situation. Whether you’re taking a business call or just
-								in your own personal space, the auto on/off and pause features
-								ensure that you’ll never miss a beat.<br></br>
-								<br></br> The advanced Active Noise Cancellation with built-in
-								equalizer allow you to experience your audio world on your
-								terms. It lets you enjoy your audio in peace, but quickly
-								interact with your surroundings when you need to. Combined with
-								Bluetooth 5. 0 compliant connectivity and 17 hour battery life,
-								the XX99 Mark II headphones gives you superior sound,
-								cutting-edge technology, and a modern design aesthetic.
-							</p>
+							<div
+								className='description'
+								style={{
+									display: 'flex',
+									gap: '1rem 0',
+									flexDirection: 'column',
+								}}
+							>
+								{descriptions.map((desc, index) => {
+									return <p key={index}>{desc}</p>;
+								})}
+							</div>
 						</div>
 
 						<div className={styles.inTheBox}>
 							<h3 className='text--h3'>In the box</h3>
 							<ul>
 								<li>
-									<span className='standout'>1x</span> Headphone Unit
+									<span className={styles.quantity}>1x</span>
+									<span className={styles.item}>Headphone Unit</span>
 								</li>
 								<li>
-									<span className='standout'>2x</span> Replacement Earcups
+									<span className={styles.quantity}>2x</span>
+									<span className={styles.item}>Replacement Earcups</span>
 								</li>
 								<li>
-									<span className='standout'>1x</span> User Manual
+									<span className={styles.quantity}>1x</span>
+									<span className={styles.item}>User Manual</span>
 								</li>
 								<li>
-									<span className='standout'>1x</span> 3.5mm 5m Audio Cable
+									<span className={styles.quantity}>1x</span>
+									<span className={styles.item}>3.5mm 5m Audio Cable</span>
 								</li>
 								<li>
-									<span className='standout'>1x</span> Travel Bag
+									<span className={styles.quantity}>1x</span>
+									<span className={styles.item}>Travel Bag</span>
 								</li>
 							</ul>
+						</div>
+					</article>
+
+					<article>
+						<div className={styles.showcaseGallery}>
+							<img
+								className='showcaseImage'
+								src={`../../product-${productName}/desktop/image-gallery-1.jpg`}
+								alt='Image 1'
+							/>
+							<img
+								className='showcaseImage'
+								src={`../../product-${productName}/desktop/image-gallery-2.jpg`}
+								alt='Image 2'
+							/>
+							<img
+								className='showcaseImage'
+								src={`../../product-${productName}/desktop/image-gallery-3.jpg`}
+								alt='Image 3'
+							/>
 						</div>
 					</article>
 				</section>
