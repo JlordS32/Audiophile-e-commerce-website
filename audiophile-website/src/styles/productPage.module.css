@@ -171,10 +171,30 @@
 
 .recommendations {
 	display: flex;
+	flex-direction: column;
 }
 
-.recommendations img {
-	width: 100%;
+.recommendations h3 {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+
+.recommendedProducts {
+	display: flex;
+	gap: 2rem;
+}
+
+.productRecommendation {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem 0;
+	align-items: center;
+	justify-content: center;
+}
+
+.productRecommendation div img {
+	width: 21.875rem;
+	border-radius: 0.5rem;
 }
 
 @media screen and (max-width: 1024px) {

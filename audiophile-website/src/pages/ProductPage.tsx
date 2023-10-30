@@ -81,7 +81,7 @@ const ProductPage = () => {
 							alt={product.name}
 						/>
 					</div>
-					<p className='text--h5'>{product.name}</p>
+					<p className='display-text'>{product.name}</p>
 					<RRDLink to={`/product/${product.slug}`}>
 						<Button>See Product</Button>
 					</RRDLink>
@@ -220,7 +220,10 @@ const ProductPage = () => {
 					</article>
 
 					<article className={styles.recommendations}>
-						{renderRecommendedProduct()}
+						<h3 className='text--h3'>You may also like</h3>
+						<div className={styles.recommendedProducts}>
+							{renderRecommendedProduct()}
+						</div>
 					</article>
 				</section>
 
