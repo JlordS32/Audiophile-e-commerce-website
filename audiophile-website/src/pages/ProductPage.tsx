@@ -1,8 +1,7 @@
-// react
-import { useEffect } from 'react';
+import { ReactNode } from 'react';
 
 // rrd
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link as RRDLink } from 'react-router-dom';
 
 // styles
 import styles from '../styles/productPage.module.css';
@@ -12,20 +11,41 @@ import Footer from '../components/Footer';
 import Review from '../components/Review';
 import Form from '../components/Form';
 import Button from '../components/Button';
-import { formatCurrency } from '../utility/utilities';
+
+// utilities
+import { formatCurrency, getBestRecommended } from '../utility/utilities';
 
 // data imports
 import data from '../data/data.json';
+import Products from '../components/Products';
 
+interface GalleryType {
+	[0]: string;
+	[1]: {
+		desktop: string;
+		mobile?: string;
+		tablet?: string;
+	};
+}
+
+interface InTheBoxType {
+	item: string;
+	quantity: number;
+}
+/**
+ * ProductPage component
+ *
+ * This component renders a product page with various details and recommendations.
+ */
 const ProductPage = () => {
-	// rrd hooks
+	// Hooks
 	const { productName } = useParams();
 	const navigate = useNavigate();
 
-	// filtering data
+	// Filter product data
 	const productData = data.filter((data) => data.slug === productName)[0];
 
-	// destructuring data
+	// Destructure product data
 	const {
 		features,
 		categoryImage,
@@ -34,9 +54,97 @@ const ProductPage = () => {
 		description,
 		price,
 		includes,
+		gallery,
 	} = productData;
 
+	// Split feature description
 	const featureDescription = features.split('\n');
+
+	// Get recommended products
+	const recommendedProducts = getBestRecommended(productName as string);
+
+	/**
+	 * Render recommended product
+	 *
+	 * This function maps over recommended products and returns a ReactNode.
+	 */
+	const renderRecommendedProduct = (): ReactNode => {
+		const recommendedProduct: ReactNode = recommendedProducts.map((product) => {
+			return (
+				<div
+					className={styles.productRecommendation}
+					key={product.id}
+				>
+					<div>
+						<img
+							src={product.categoryImage.desktop}
+							alt={product.name}
+						/>
+					</div>
+					<p className='text--h5'>{product.name}</p>
+					<RRDLink to={`/product/${product.slug}`}>
+						<Button>See Product</Button>
+					</RRDLink>
+				</div>
+			);
+		});
+
+		return recommendedProduct;
+	};
+
+	/**
+	 * Render gallery showcase
+	 *
+	 * This function maps over gallery items and returns a ReactNode.
+	 */
+	const renderShowCaseGallery = (gallery: GalleryType[]): ReactNode => {
+		const galleryNodeElement: ReactNode = gallery.map((item, index) => {
+			return (
+				<div
+					className={styles.showcaseImg}
+					style={{
+						backgroundImage: `url(${item[1].desktop})`,
+					}}
+					key={index}
+				></div>
+			);
+		});
+
+		return galleryNodeElement ?? <div>Failed to gallery!</div>;
+	};
+
+	/**
+	 * Render feature description
+	 *
+	 * This function maps over feature description and returns a ReactNode.
+	 */
+	const renderFeaturesDesc = (featureDescription: Array<string>): ReactNode => {
+		const desc = featureDescription.map((desc, index) => {
+			if (desc !== '') {
+				return <p key={index}>{desc}</p>;
+			}
+		});
+
+		return desc;
+	};
+
+	/**
+	 * Render items in the box
+	 *
+	 * This function maps over items in the box and returns a ReactNode.
+	 */
+	const renderInTheBoxItems = (includes: InTheBoxType[]): ReactNode => {
+		const inTheBoxItemElement = includes.map((item, index) => {
+			return (
+				<li key={index}>
+					<span className={styles.quantity}>{item.quantity}x</span>
+					<span className={styles.item}>{item.item}</span>
+				</li>
+			);
+		});
+
+		return inTheBoxItemElement;
+	};
 
 	return (
 		<div className={styles.productPage}>
@@ -95,51 +203,29 @@ const ProductPage = () => {
 									flexDirection: 'column',
 								}}
 							>
-								{featureDescription.map((desc, index) => {
-									if (desc !== '') {
-										return <p key={index}>{desc}</p>;
-									}
-								})}
+								{renderFeaturesDesc(featureDescription)}
 							</div>
 						</div>
 
 						<div className={styles.inTheBox}>
 							<h3 className='text--h3'>In the box</h3>
-							<ul>
-								{includes.map((item) => {
-									return (
-										<li>
-											<span className={styles.quantity}>{item.quantity}x</span>
-											<span className={styles.item}>{item.item}</span>
-										</li>
-									);
-								})}
-							</ul>
+							<ul>{renderInTheBoxItems(includes)}</ul>
 						</div>
 					</article>
 
 					<article>
 						<div className={styles.showcaseGallery}>
-							<div
-								className={styles.showcaseImg}
-								style={{
-									backgroundImage: `url(../../product-${productName}/desktop/image-gallery-1.jpg)`,
-								}}
-							></div>
-							<div
-								className={styles.showcaseImg}
-								style={{
-									backgroundImage: `url(../../product-${productName}/desktop/image-gallery-2.jpg)`,
-								}}
-							></div>
-							<div
-								className={styles.showcaseImg}
-								style={{
-									backgroundImage: `url(../../product-${productName}/desktop/image-gallery-3.jpg)`,
-								}}
-							></div>
+							{renderShowCaseGallery(Object.entries(gallery))}
 						</div>
 					</article>
+
+					<article className={styles.recommendations}>
+						{renderRecommendedProduct()}
+					</article>
+				</section>
+
+				<section>
+					<Products />
 				</section>
 
 				<section>
