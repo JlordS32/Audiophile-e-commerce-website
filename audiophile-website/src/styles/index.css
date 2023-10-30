@@ -23,6 +23,7 @@
 	--btn-2: var(--light-grey);
 	--btn-2-hover: var(--black);
 	--btn-font-size: 0.8125rem;
+	--standard-width: clamp(20.4375rem, 95%, 69.375rem);
 
 	font-family: var(--font-family);
 	font-size: var(--font-size);

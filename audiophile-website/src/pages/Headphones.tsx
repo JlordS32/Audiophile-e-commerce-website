@@ -6,8 +6,8 @@ import Review from '../components/Review';
 import Footer from '../components/Footer';
 
 // images
-import xx99Img from '../assets/product-xx99-mark-two-headphones/desktop/image-product.jpg';
-import xx99MarkI from '../assets/product-xx99-mark-one-headphones/desktop/image-product.jpg';
+import xx99Img from '../assets/product-xx99-mark-ii-headphones/desktop/image-product.jpg';
+import xx99MarkI from '../assets/product-xx99-mark-i-headphones/desktop/image-product.jpg';
 import xx59Img from '../assets/product-xx59-headphones/desktop/image-product.jpg';
 
 const Headphones = () => {

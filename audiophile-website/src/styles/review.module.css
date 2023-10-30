@@ -5,7 +5,7 @@
 }
 
 .review {
-	width: clamp(20.4375rem, 95%, 69.375rem);
+	width: var(--standard-width);
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 12rem;

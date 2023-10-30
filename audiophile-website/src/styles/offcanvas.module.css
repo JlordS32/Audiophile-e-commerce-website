@@ -1,0 +1,66 @@
+@keyframes slideLeft {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(0%);
+	}
+}
+
+.offCanvasContainer {
+	position: fixed;
+	background-color: black;
+	width: 50vw;
+	height: 100vh;
+	color: white;
+	display: flex;
+	padding: 1.5rem;
+	transition: width 150ms ease-in;
+	animation: slideLeft 0.7s ease;
+	z-index: 1000;
+	flex-direction: column;
+}
+
+.offCanvasContainer > div:last-child {
+	margin-top: 2rem;
+   display: flex;
+	flex-direction: column;
+   gap: 1rem 0;
+}
+
+.offCanvasContainer > div:last-child a {
+	color: var(--white);
+   text-transform: uppercase;
+   line-height: normal;
+   font-size: 1.5rem;
+}
+
+
+.offCanvasContainer > div:last-child a:active, 
+.offCanvasContainer > div:last-child a:hover {
+   color: var(--primary);
+}
+
+.closeBtn {
+	cursor: pointer;
+	margin-left: auto;
+}
+
+.closeBtn svg {
+	transition: 150ms ease-in;
+}
+
+.closeBtn svg:hover {
+	transform: scale(1.1);
+}
+
+@media screen and (max-width: 767px) {
+	.offCanvasContainer {
+		width: 100%;
+	}
+
+   .offCanvasContainer > div:last-child a {
+      text-align: center;
+   }
+}

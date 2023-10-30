@@ -28,6 +28,7 @@ const ShowProduct = ({
 		replacement: '-',
 		lower: true,
 	});
+	
 	return (
 		<div className={styles.container}>
 			<div className={styles.product}>
