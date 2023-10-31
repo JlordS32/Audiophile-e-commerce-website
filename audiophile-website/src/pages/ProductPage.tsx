@@ -21,6 +21,7 @@ import Products from '../components/Products';
 
 // images
 import errorImg from '../assets/failedLoadingImg.jpg';
+import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 interface GalleryType {
 	[0]: string;
@@ -48,6 +49,9 @@ const ProductPage = () => {
 	// Filter product data
 	const productData = data.filter((data) => data.slug === productName)[0];
 
+	// context
+	const { quantity, resetQuantity, updateCart } = UseShoppingCart();
+
 	// Destructure product data
 	const {
 		features,
@@ -58,6 +62,7 @@ const ProductPage = () => {
 		price,
 		includes,
 		gallery,
+		slug,
 	} = productData;
 
 	const handleImageError = (e: React.SyntheticEvent) => {
@@ -208,7 +213,18 @@ const ProductPage = () => {
 
 							<div className={styles.addToCart}>
 								<Form.Counter />
-								<Button>Add to cart</Button>
+								<Button
+									onClick={() => {
+										updateCart({
+											item: slug,
+											quantity: quantity,
+										});
+
+										resetQuantity();
+									}}
+								>
+									Add to cart
+								</Button>
 							</div>
 						</div>
 					</article>

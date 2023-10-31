@@ -1,5 +1,12 @@
 import data from '../data/data.json';
 
+// types
+
+interface CartType {
+	item: string;
+	quantity: number;
+}
+
 export function formatCurrency(amount: number) {
 	return new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -17,4 +24,16 @@ export function getBestRecommended(selectedProduct: string) {
 	const randomData = shuffledData.slice(0, 3);
 
 	return randomData;
+}
+
+export function createCart(cart: CartType[]): void {
+	localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+export function fetchData(key: string) {
+	return JSON.parse(localStorage.getItem(key) as string);
+}
+
+export function deleteCart() {
+	localStorage.removeItem('cart');
 }
