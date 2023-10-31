@@ -36,7 +36,7 @@
 
 .burgerMenu {
 	display: none;
-   cursor: pointer;
+	cursor: pointer;
 }
 
 /* hover states */
@@ -44,14 +44,46 @@
 	color: var(--primary);
 }
 
+.checkout {
+	position: relative;
+}
+
+.checkout .quantityTotal {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	position: absolute;
+	right: -30%;
+	bottom: 0;
+	background-color: white;
+	font-size: 0.7rem;
+	height: 1rem;
+	aspect-ratio: 1 / 1;
+	font-weight: 700;
+	border-radius: 50%;
+}
+
+.checkout {
+	cursor: pointer;
+}
+
+.cartModal {
+	position: absolute;
+	top: 225%;
+	height: 100px;
+	content: '';
+	width: 100%;
+	background-color: white;
+}
+
 @media screen and (max-width: 1024px) {
 	.navLink {
 		display: none;
 	}
 
-   .burgerMenu {
-      display: block;
-   }
+	.burgerMenu {
+		display: block;
+	}
 }
 
 @media screen and (max-width: 767px) {

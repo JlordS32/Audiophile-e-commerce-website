@@ -13,16 +13,16 @@ const Footer = () => {
 
 				<div className={styles.links}>
 					<NavLink to='/'>
-						<a>Home</a>
+						<span>Home</span>
 					</NavLink>
 					<NavLink to='/headphones'>
-						<a>Headphones</a>
+						<span>Headphones</span>
 					</NavLink>
 					<NavLink to='/speakers'>
-						<a>Speaker</a>
+						<span>Speaker</span>
 					</NavLink>
 					<NavLink to='/earphones'>
-						<a>Earphones</a>
+						<span>Earphones</span>
 					</NavLink>
 				</div>
 			</div>

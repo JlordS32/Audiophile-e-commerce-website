@@ -47,7 +47,7 @@ const ProductPage = () => {
 	const navigate = useNavigate();
 
 	// Filter product data
-	const productData = data.filter((data) => data.slug === productName)[0];
+	const productData = data?.filter((data) => data.slug === productName)[0];
 
 	// context
 	const { quantity, resetQuantity, updateCart } = UseShoppingCart();
