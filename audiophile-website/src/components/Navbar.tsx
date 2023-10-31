@@ -13,9 +13,13 @@ import burgerIcon from '../assets/shared/tablet/icon-hamburger.svg';
 
 // components
 import OffCanvas from './OffCanvas';
+import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 const Navbar = () => {
 	const [openOffCanvas, setOpenOffCanvas] = useState<boolean>(false);
+	const [cartModal, setCartModal] = useState<boolean>(true);
+
+	const { total } = UseShoppingCart();
 
 	const location = useLocation();
 
@@ -68,13 +72,24 @@ const Navbar = () => {
 						<span>Earphones</span>
 					</NavLink>
 				</div>
-				<div className='checkout'>
+				<div
+					className={styles.checkout}
+					onClick={() => setCartModal(!cartModal)}
+				>
 					<img
 						src={cartIcon}
 						alt='cart icon'
 					/>
+
+					{total > 0 && <div className={styles.quantityTotal}>{total}</div>}
+
+					<dialog className={styles.cartModal} open>
+						<h4 className="text--h4">Cart</h4>
+						<p>Remove all</p>
+					</dialog>
 				</div>
 			</div>
+
 			<OffCanvas
 				open={openOffCanvas}
 				setOpen={setOpenOffCanvas}

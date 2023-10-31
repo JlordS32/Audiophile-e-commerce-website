@@ -46,7 +46,7 @@ const ProductPage = () => {
 	const navigate = useNavigate();
 
 	// Filter product data
-	const productData = data.filter((data) => data.slug === productName)[0];
+	const productData = data?.filter((data) => data.slug === productName)[0];
 
 	// Destructure product data
 	const {
