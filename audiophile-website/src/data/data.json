@@ -4,15 +4,15 @@
     "slug": "yx1-wireless-earphones",
     "name": "YX1 Wireless Earphones",
     "image": {
-      "mobile": "../../product-yx1-wireless-earphones/mobile/image-product.jpg",
-      "tablet": "../../product-yx1-wireless-earphones/tablet/image-product.jpg",
-      "desktop": "../../product-yx1-wireless-earphones/desktop/image-product.jpg"
+      "mobile": "../../product-yx1-earphones/mobile/image-product.jpg",
+      "tablet": "../../product-yx1-earphones/tablet/image-product.jpg",
+      "desktop": "../../product-yx1-earphones/desktop/image-product.jpg"
     },
     "category": "earphones",
     "categoryImage": {
-      "mobile": "../../product-yx1-wireless-earphones/mobile/image-category-page-preview.jpg",
-      "tablet": "../../product-yx1-wireless-earphones/tablet/image-category-page-preview.jpg",
-      "desktop": "../../product-yx1-wireless-earphones/desktop/image-category-page-preview.jpg"
+      "mobile": "../../product-yx1-earphones/mobile/image-category-page-preview.jpg",
+      "tablet": "../../product-yx1-earphones/tablet/image-category-page-preview.jpg",
+      "desktop": "../../product-yx1-earphones/desktop/image-category-page-preview.jpg"
     },
     "new": true,
     "price": 599,
@@ -42,19 +42,19 @@
     ],
     "gallery": {
       "first": {
-        "mobile": "../../product-yx1-wireless-earphones/mobile/image-gallery-1.jpg",
-        "tablet": "../../product-yx1-wireless-earphones/tablet/image-gallery-1.jpg",
-        "desktop": "../../product-yx1-wireless-earphones/desktop/image-gallery-1.jpg"
+        "mobile": "../../product-yx1-earphones/mobile/image-gallery-1.jpg",
+        "tablet": "../../product-yx1-earphones/tablet/image-gallery-1.jpg",
+        "desktop": "../../product-yx1-earphones/desktop/image-gallery-1.jpg"
       },
       "second": {
-        "mobile": "../../product-yx1-wireless-earphones/mobile/image-gallery-2.jpg",
-        "tablet": "../../product-yx1-wireless-earphones/tablet/image-gallery-2.jpg",
-        "desktop": "../../product-yx1-wireless-earphones/desktop/image-gallery-2.jpg"
+        "mobile": "../../product-yx1-earphones/mobile/image-gallery-2.jpg",
+        "tablet": "../../product-yx1-earphones/tablet/image-gallery-2.jpg",
+        "desktop": "../../product-yx1-earphones/desktop/image-gallery-2.jpg"
       },
       "third": {
-        "mobile": "../../product-yx1-wireless-earphones/mobile/image-gallery-3.jpg",
-        "tablet": "../../product-yx1-wireless-earphones/tablet/image-gallery-3.jpg",
-        "desktop": "../../product-yx1-wireless-earphones/desktop/image-gallery-3.jpg"
+        "mobile": "../../product-yx1-earphones/mobile/image-gallery-3.jpg",
+        "tablet": "../../product-yx1-earphones/tablet/image-gallery-3.jpg",
+        "desktop": "../../product-yx1-earphones/desktop/image-gallery-3.jpg"
       }
     }
   },

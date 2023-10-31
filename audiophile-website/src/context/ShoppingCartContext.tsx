@@ -7,16 +7,9 @@ export function UseShoppingCart() {
 	return useContext(ShoppingCartContext);
 }
 
-interface CartType {
-	item: string;
-	quantity: number;
-}
-
 type ShoppingCartContext = {
 	increaseQuantity: () => void;
 	decreaseQuantity: () => void;
-	resetQuantity: () => void;
-	updateCart: ({ item, quantity }: CartType) => void;
 	quantity: number;
 	total: number;
 	cart: CartType[];
@@ -29,15 +22,10 @@ export function ShoppingCartProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [quantity, setQuantity] = useState<number>(1);
-	const [cart, setCart] = useState<CartType[]>([]);
+	const [quantity, setQuantity] = useState<number>(0);
 
 	const increaseQuantity = () => {
 		setQuantity(quantity + 1);
-	};
-
-	const resetQuantity = () => {
-		setQuantity(1);
 	};
 
 	const decreaseQuantity = () => {
