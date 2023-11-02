@@ -31,29 +31,19 @@ const Speakers = () => {
 							description,
 							new: isNew,
 							name,
+							slug
 						} = speaker;
-						if (index % 2 === 0) {
-							return (
-								<ShowProduct
-									imgUrl={categoryImage.desktop}
-									description={description}
-									title={name}
-									reverseOrder={true}
-									newProduct={isNew ?? false}
-									key={id}
-								/>
-							);
-						} else {
-							return (
-								<ShowProduct
-									imgUrl={categoryImage.desktop}
-									description={description}
-									title={name}
-									newProduct={isNew ?? false}
-									key={id}
-								/>
-							);
-						}
+						return (
+							<ShowProduct
+								imgUrl={categoryImage.desktop}
+								description={description}
+								title={name}
+								reverseOrder={index % 2 === 0 ? true : false}
+								newProduct={isNew ?? false}
+								key={id}
+								slug={slug}
+							/>
+						);
 					})}
 				</section>
 

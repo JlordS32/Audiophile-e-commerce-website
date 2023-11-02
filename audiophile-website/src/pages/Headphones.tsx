@@ -10,7 +10,6 @@ import data from '../data/data.json';
 
 type category = 'headphones';
 const Headphones = () => {
-
 	const category: category = 'headphones';
 
 	const headphones = data.filter((item) => item.category === category);
@@ -25,31 +24,26 @@ const Headphones = () => {
 			<main>
 				<section>
 					{headphones.map((headphone, index) => {
-						const { id, categoryImage, description, new: isNew, name, slug } = headphone;
-						if (index % 2 === 0) {
-							return (
-								<ShowProduct
-									imgUrl={categoryImage.desktop}
-									description={description}
-									title={name}
-									reverseOrder={true}
-									newProduct={isNew ?? false}
-									key={id}
-									slug={slug}
-								/>
-							);
-						} else {
-							return (
-								<ShowProduct
-									imgUrl={categoryImage.desktop}
-									description={description}
-									title={name}
-									newProduct={isNew ?? false}
-									key={id}
-									slug={slug}
-								/>
-							);
-						}
+						const {
+							id,
+							categoryImage,
+							description,
+							new: isNew,
+							name,
+							slug,
+						} = headphone;
+
+						return (
+							<ShowProduct
+								imgUrl={categoryImage.desktop}
+								description={description}
+								title={name}
+								reverseOrder={index % 2 === 0 ? true : false}
+								newProduct={isNew ?? false}
+								key={id}
+								slug={slug}
+							/>
+						);
 					})}
 				</section>
 
