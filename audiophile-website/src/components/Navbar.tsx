@@ -116,7 +116,7 @@ const Navbar = () => {
 			</OffCanvas>
 
 			{/* Opens modal when cart is clicked */}
-			{cartModal && <CartModal />}
+			{cartModal && <CartModal close={() => setCartModal(false)}/>}
 		</>
 	);
 };

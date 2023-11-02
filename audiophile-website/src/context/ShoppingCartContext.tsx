@@ -1,13 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // utilities
-import { createCart, fetchData } from '../utility/utilities';
+import { createCart, deleteCart, fetchData } from '../utility/utilities';
 
 export function UseShoppingCart() {
 	return useContext(ShoppingCartContext);
 }
 
 interface CartType {
+	id: number;
 	item: string;
 	quantity: number;
 }
@@ -16,6 +17,7 @@ type ShoppingCartContext = {
 	increaseQuantity: () => void;
 	decreaseQuantity: () => void;
 	resetQuantity: () => void;
+	removeCart: () => void;
 	updateCart: ({ item, quantity }: CartType) => void;
 	quantity: number;
 	total: number;
@@ -50,9 +52,9 @@ export function ShoppingCartProvider({
 
 	const total = cart.reduce((prev, next) => {
 		return prev + next.quantity;
-	}, 0)
+	}, 0);
 
-	const updateCart = ({ item, quantity }: CartType) => {
+	const updateCart = ({ id, item, quantity }: CartType) => {
 		setCart((prev) => {
 			const existingItem = prev.find((cartItem) => cartItem.item === item);
 			if (existingItem) {
@@ -70,9 +72,14 @@ export function ShoppingCartProvider({
 				return updatedCart;
 			}
 
-			createCart([...prev, { item, quantity }]);
-			return [...prev, { item, quantity }];
+			createCart([...prev, { id, item, quantity }]);
+			return [...prev, { id, item, quantity }];
 		});
+	};
+
+	const removeCart = () => {
+		setCart([]);
+		deleteCart();
 	};
 
 	useEffect(() => {
@@ -92,7 +99,8 @@ export function ShoppingCartProvider({
 				decreaseQuantity,
 				cart,
 				resetQuantity,
-				total
+				total,
+				removeCart
 			}}
 		>
 			{children}

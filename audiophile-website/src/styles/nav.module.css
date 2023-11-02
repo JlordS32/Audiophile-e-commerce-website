@@ -30,6 +30,8 @@
 .navLink {
 	display: flex;
 	gap: 0 2.15rem;
+	position: relative;
+	right: 4rem;
 }
 
 .navLink a {
@@ -125,6 +127,30 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.modal:focus {
+	outline: none;
+	border: none;
+}
+
+.modal .cartHeader {
+	display: flex;
+	justify-content: space-between;
+}
+
+.modal .cartHeader div {
+	cursor: pointer;
+}
+
+.modal .cartHeader div:hover {
+	color: var(--primary);
+	text-decoration: underline;
+}
+
+.modal .order {
+	display: flex;
+	text-transform: uppercase;
 }
 
 @media screen and (max-width: 1024px) {

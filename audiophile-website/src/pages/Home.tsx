@@ -99,7 +99,7 @@ const Home = () => {
 						>
 							YX1 Earphones
 						</span>
-						<RRDLink to={`/product/yx1-earphones`}>
+						<RRDLink to={`/product/yx1-wireless-earphones`}>
 							<Button variant='dark-outline'>See Product</Button>
 						</RRDLink>
 					</div>

@@ -53,6 +53,7 @@ const ProductPage = () => {
 
 	// Destructure product data
 	const {
+		id: ProductID,
 		features,
 		categoryImage,
 		new: isNewProduct,
@@ -219,6 +220,7 @@ const ProductPage = () => {
 										updateCart({
 											item: slug,
 											quantity: quantity,
+											id: ProductID
 										});
 										resetQuantity();
 									}}

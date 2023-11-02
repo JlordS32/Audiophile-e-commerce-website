@@ -14,6 +14,23 @@ export function formatCurrency(amount: number) {
 	}).format(amount);
 }
 
+export function cleanUpString(
+	word: string,
+	wordsToRemove: Array<string>
+): string {
+	let cleanWorld = word.toLowerCase().trim();
+
+	for (const wordToRemove of wordsToRemove) {
+		if (cleanWorld.split(' ').includes('mark')) {
+			cleanWorld = cleanWorld.replace('mark', 'mk').trim();
+		}
+
+		cleanWorld = cleanWorld.replace(wordToRemove.toLowerCase(), '').trim();
+	}
+
+	return cleanWorld as string;
+}
+
 export function getBestRecommended(selectedProduct: string) {
 	const newData = data.filter((item) => item.slug !== selectedProduct);
 
