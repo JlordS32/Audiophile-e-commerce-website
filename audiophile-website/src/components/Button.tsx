@@ -6,15 +6,19 @@ type ButtonProps = {
 	variant?: string;
 	children?: ReactNode;
 	onClick?: () => void;
+	width?: string;
 };
 
-const Button = ({ variant = 'primary', children, onClick }: ButtonProps) => {
+const Button = ({ variant = 'primary', children, onClick, width }: ButtonProps) => {
 	return (
 		<div
 			className={`${styles.btn} ${styles[`btn--${variant}`]}`}
 			onClick={() => {
 				if (!onClick) return;
 				onClick();
+			}}
+			style={{
+				width: width ? width : '',
 			}}
 		>
 			{children}

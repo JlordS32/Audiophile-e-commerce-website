@@ -22,6 +22,9 @@ import Products from '../components/Products';
 // images
 import errorImg from '../assets/failedLoadingImg.jpg';
 
+// context
+import { UseShoppingCart } from '../context/ShoppingCartContext';
+
 interface GalleryType {
 	[0]: string;
 	[1]: {
@@ -58,12 +61,15 @@ const ProductPage = () => {
 		price,
 		includes,
 		gallery,
+		slug
 	} = productData;
 
 	const handleImageError = (e: React.SyntheticEvent) => {
 		const target = e.target as HTMLImageElement;
 		target.src = errorImg;
 	};
+
+	const { updateCart, resetQuantity, quantity } = UseShoppingCart();
 
 	// Split feature description
 	const featureDescription = features.split('\n');
@@ -208,7 +214,17 @@ const ProductPage = () => {
 
 							<div className={styles.addToCart}>
 								<Form.Counter />
-								<Button>Add to cart</Button>
+								<Button
+									onClick={() => {
+										updateCart({
+											item: slug,
+											quantity: quantity,
+										});
+										resetQuantity();
+									}}
+								>
+									Add to cart
+								</Button>
 							</div>
 						</div>
 					</article>

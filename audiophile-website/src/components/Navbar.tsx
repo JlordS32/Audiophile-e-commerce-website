@@ -14,10 +14,11 @@ import burgerIcon from '../assets/shared/tablet/icon-hamburger.svg';
 // components
 import OffCanvas from './OffCanvas';
 import { UseShoppingCart } from '../context/ShoppingCartContext';
+import CartModal from './CartModal';
 
 const Navbar = () => {
 	const [openOffCanvas, setOpenOffCanvas] = useState<boolean>(false);
-	const [cartModal, setCartModal] = useState<boolean>(true);
+	const [cartModal, setCartModal] = useState<boolean>(false);
 
 	const { total } = UseShoppingCart();
 
@@ -27,6 +28,10 @@ const Navbar = () => {
 
 	const pageBlackBg = productPathPattern.test(location.pathname);
 
+	const closeCartModal = () => {
+		setCartModal(false);
+	};
+
 	return (
 		<>
 			<div
@@ -35,40 +40,47 @@ const Navbar = () => {
 					backgroundColor: pageBlackBg ? 'black' : 'transparent',
 				}}
 			>
-				<div className='d-flex'>
-					<div
-						className={styles.burgerMenu}
-						onClick={() => setOpenOffCanvas(true)}
-					>
+				<div
+					className={styles.burgerMenu}
+					onClick={() => setOpenOffCanvas(true)}
+				>
+					<img
+						src={burgerIcon}
+						alt='menu icon'
+					/>
+				</div>
+				<NavLink to='/'>
+					<div className={styles.logo}>
 						<img
-							src={burgerIcon}
-							alt='menu icon'
-							style={{
-								marginRight: '2.7rem',
-							}}
+							src={companyLogo}
+							alt='company logo'
 						/>
 					</div>
-					<NavLink to='/'>
-						<div className='logo'>
-							<img
-								src={companyLogo}
-								alt='company logo'
-							/>
-						</div>
-					</NavLink>
-				</div>
+				</NavLink>
 
 				<div className={styles.navLink}>
-					<NavLink to='/'>
+					<NavLink
+						to='/'
+						onClick={closeCartModal}
+					>
 						<span>Home</span>
 					</NavLink>
-					<NavLink to='headphones'>
+					<NavLink
+						to='headphones'
+						onClick={closeCartModal}
+					>
 						<span>Headphones</span>
 					</NavLink>
-					<NavLink to='speakers'>
+					<NavLink
+						to='speakers'
+						onClick={closeCartModal}
+					>
 						<span>Speakers</span>
 					</NavLink>
-					<NavLink to='earphones'>
+					<NavLink
+						to='earphones'
+						onClick={closeCartModal}
+					>
 						<span>Earphones</span>
 					</NavLink>
 				</div>
@@ -82,11 +94,6 @@ const Navbar = () => {
 					/>
 
 					{total > 0 && <div className={styles.quantityTotal}>{total}</div>}
-
-					<dialog className={styles.cartModal} open>
-						<h4 className="text--h4">Cart</h4>
-						<p>Remove all</p>
-					</dialog>
 				</div>
 			</div>
 
@@ -107,6 +114,9 @@ const Navbar = () => {
 					<span>Earphones</span>
 				</NavLink>
 			</OffCanvas>
+
+			{/* Opens modal when cart is clicked */}
+			{cartModal && <CartModal />}
 		</>
 	);
 };

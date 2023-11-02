@@ -50,6 +50,10 @@ a {
 	text-decoration: none;
 }
 
+.layout {
+	position: relative;
+}
+
 .text--h1 {
 	font-size: clamp(40px, 5vw, 56px);
 	line-height: 56px;
@@ -137,5 +141,16 @@ a {
 	font-weight: 700;
 	line-height: normal;
 	letter-spacing: 0.10713rem;
+	text-transform: uppercase;
+}
+
+.standard-text {
+	font-size: 0.9375rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.5625rem;
+}
+
+.uppercase {
 	text-transform: uppercase;
 }

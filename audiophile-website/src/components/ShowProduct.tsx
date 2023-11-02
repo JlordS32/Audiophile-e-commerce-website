@@ -39,7 +39,7 @@ const ShowProduct = ({
 				<div
 					className={styles.imgContainer}
 					style={{
-						backgroundImage: `url(${imgUrl}), url(${errorImg})`,
+						backgroundImage: `url(${imgUrl})`,
 						order: reverseOrder ? '1' : '0',
 					}}
 				></div>
