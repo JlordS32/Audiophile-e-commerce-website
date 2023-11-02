@@ -15,7 +15,7 @@ import data from '../data/data.json';
 import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 // libraries
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 // types
 type CartModal = {
@@ -53,7 +53,6 @@ const CartModal = ({ close }: CartModal) => {
 		}
 	}, 0);
 
-	
 	// useEffect to make sure that the modal is focused on reload.
 	useEffect(() => {
 		modalRef.current?.focus();
@@ -79,7 +78,10 @@ const CartModal = ({ close }: CartModal) => {
 					)}
 				</div>
 
-				<div className={styles.ordersContainer} ref={parent}>
+				<div
+					className={styles.ordersContainer}
+					ref={parent}
+				>
 					{orderedItems && orderedItems.length > 0 ? (
 						<>
 							{orderData.map((order, index) => {
@@ -104,12 +106,12 @@ const CartModal = ({ close }: CartModal) => {
 										</div>
 										<div className={styles.details}>
 											<div
-												className='product'
+												className={styles.product}
 												aria-label={order.name}
 											>
 												{cleanUpString(order.name, wordToRemove)}
 											</div>
-											<div className='price'>
+											<div className={styles.price}>
 												<div aria-label={order.price.toString()}>
 													{formatCurrency(order.price)}
 												</div>
@@ -119,11 +121,13 @@ const CartModal = ({ close }: CartModal) => {
 											<div
 												className={styles.adjustQuantityBtn}
 												onClick={() => {
-													updateCart({
-														item: order.slug,
-														quantity: 1,
-														id: order.id,
-													});
+													if(orderQuantity && orderQuantity < 99) {
+														updateCart({
+															item: order.slug,
+															quantity: 1,
+															id: order.id,
+														});
+													}
 												}}
 											>
 												+
@@ -132,19 +136,21 @@ const CartModal = ({ close }: CartModal) => {
 											<div
 												className={styles.adjustQuantityBtn}
 												onClick={() => {
-													if (orderQuantity === 1) {
-														deleteItemFromCart({
+													if (orderQuantity && orderQuantity < 99) {
+														if (orderQuantity === 1) {
+															deleteItemFromCart({
+																item: order.slug,
+																id: order.id,
+															});
+															return;
+														}
+
+														updateCart({
 															item: order.slug,
+															quantity: -1,
 															id: order.id,
 														});
-														return;
 													}
-
-													updateCart({
-														item: order.slug,
-														quantity: -1,
-														id: order.id,
-													});
 												}}
 											>
 												-

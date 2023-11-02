@@ -15,9 +15,10 @@ import Home from './pages/Home';
 import Headphones from './pages/Headphones';
 import Speakers from './pages/Speakers';
 import Earphones from './pages/Earphones';
+import Checkout from './pages/Checkout';
+import { ToastContainer } from 'react-toastify';
 
 // library
-import { ToastContainer } from 'react-toastify';
 import ProductPage from './pages/ProductPage';
 
 const App = () => {
@@ -52,6 +53,11 @@ const App = () => {
 					element: <ProductPage />,
 					errorElement: <NotFound />,
 				},
+				{
+					path: 'checkout',
+					element: <Checkout />,
+					errorElement: <NotFound />,
+				}
 			],
 		},
 	]);

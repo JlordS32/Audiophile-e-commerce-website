@@ -141,6 +141,7 @@
 
 .modal .cartHeader div {
 	cursor: pointer;
+	opacity: 0.5;
 }
 
 .modal .cartHeader div:hover {
@@ -161,6 +162,21 @@
 	gap: 0 1rem;
 }
 
+.details {
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5625rem;
+}
+
+.details .product {
+	font-size: 0.9375rem;
+}
+
+.details .price {
+	font-size: 0.875rem;
+	opacity: 0.5;
+}
+
 .orderImg img {
 	border-radius: 0.5rem;
 }
@@ -175,13 +191,17 @@
 	align-items: center;
 	font-weight: 700;
 	color: var(--black);
-	
 	margin-left: auto;
 }
 
 .orderQuantity > .adjustQuantityBtn {
 	opacity: 0.25;
 	cursor: pointer;
+	font-size: 1rem;
+}
+
+.orderQuantity > .adjustQuantityBtn:hover {
+	color: var(--primary);
 }
 
 @media screen and (max-width: 1024px) {
@@ -201,5 +221,15 @@
 
 	.nav::before {
 		width: 100%;
+	}
+}
+
+@media screen and (max-width: 480px){
+	.modal {
+		top: 2rem;
+		right: 0;
+		margin-left: 0;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 }
