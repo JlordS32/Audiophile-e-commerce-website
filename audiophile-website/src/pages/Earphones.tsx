@@ -41,8 +41,8 @@ const Earphones = () => {
 								imgUrl={categoryImage.desktop}
 								description={description}
 								title={name}
-								reverseOrder={index % 2 === 0 ? true : false}
-								newProduct={isNew ?? false}
+								reverseOrder={index % 2 === 0}
+								newProduct={isNew}
 								key={id}
 								slug={slug}
 							/>
