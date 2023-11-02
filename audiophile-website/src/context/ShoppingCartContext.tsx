@@ -18,7 +18,8 @@ type ShoppingCartContext = {
 	decreaseQuantity: () => void;
 	resetQuantity: () => void;
 	removeCart: () => void;
-	updateCart: ({ item, quantity }: CartType) => void;
+	deleteItemFromCart: ({ id, item }: { id: number; item: string }) => void;
+	updateCart: ({ id, item, quantity }: CartType) => void;
 	quantity: number;
 	total: number;
 	cart: CartType[];
@@ -77,6 +78,19 @@ export function ShoppingCartProvider({
 		});
 	};
 
+	const deleteItemFromCart = ({ id, item }: { id: number; item: string }) => {
+		setCart((prev): CartType[] => {
+			const updatedCart = prev.filter((cartItem) => {
+				if (cartItem.item !== item && cartItem.id !== id) {
+					return cartItem;
+				}
+			});
+			createCart(updatedCart);
+
+			return updatedCart;
+		});
+	};
+
 	const removeCart = () => {
 		setCart([]);
 		deleteCart();
@@ -100,7 +114,8 @@ export function ShoppingCartProvider({
 				cart,
 				resetQuantity,
 				total,
-				removeCart
+				removeCart,
+				deleteItemFromCart,
 			}}
 		>
 			{children}

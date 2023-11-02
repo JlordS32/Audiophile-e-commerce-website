@@ -14,6 +14,9 @@ import Button from './Button';
 import data from '../data/data.json';
 import { UseShoppingCart } from '../context/ShoppingCartContext';
 
+// libraries
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+
 // types
 type CartModal = {
 	close: () => void;
@@ -28,13 +31,9 @@ type OrderType = {
 const CartModal = ({ close }: CartModal) => {
 	const orderedItems: OrderType[] = fetchData('cart') ?? [];
 	const modalRef = useRef<HTMLDivElement>(null);
+	const [parent] = useAutoAnimate<HTMLDivElement>();
 
-	const { removeCart } = UseShoppingCart();
-
-	// useEffect to make sure that the modal is focused on reload.
-	useEffect(() => {
-		modalRef.current?.focus();
-	}, []);
+	const { removeCart, updateCart, deleteItemFromCart } = UseShoppingCart();
 
 	const orderData = data.filter((item) =>
 		orderedItems.some((order: OrderType) => order.id === item.id)
@@ -47,8 +46,18 @@ const CartModal = ({ close }: CartModal) => {
 			if (item.id === next.id) return item.quantity;
 		})?.quantity;
 
-		return prev + next.price * orderQuantity;
+		if (orderQuantity) {
+			return prev + next.price * orderQuantity;
+		} else {
+			return prev + next.price;
+		}
 	}, 0);
+
+	
+	// useEffect to make sure that the modal is focused on reload.
+	useEffect(() => {
+		modalRef.current?.focus();
+	}, []);
 
 	return (
 		<div className={styles.overlay}>
@@ -70,16 +79,20 @@ const CartModal = ({ close }: CartModal) => {
 					)}
 				</div>
 
-				<div>
+				<div className={styles.ordersContainer} ref={parent}>
 					{orderedItems && orderedItems.length > 0 ? (
-						<div>
+						<>
 							{orderData.map((order, index) => {
+								const orderQuantity = orderedItems.find((item) => {
+									if (item.id === order.id) return item.quantity;
+								})?.quantity;
+
 								return (
 									<div
 										key={index}
 										className={styles.order}
 									>
-										<div className='orderImg'>
+										<div className={styles.orderImg}>
 											<img
 												src={order.image.desktop}
 												alt={`Order: ${order.name}`}
@@ -89,7 +102,7 @@ const CartModal = ({ close }: CartModal) => {
 												}}
 											/>
 										</div>
-										<div className='details'>
+										<div className={styles.details}>
 											<div
 												className='product'
 												aria-label={order.name}
@@ -102,10 +115,45 @@ const CartModal = ({ close }: CartModal) => {
 												</div>
 											</div>
 										</div>
+										<div className={styles.orderQuantity}>
+											<div
+												className={styles.adjustQuantityBtn}
+												onClick={() => {
+													updateCart({
+														item: order.slug,
+														quantity: 1,
+														id: order.id,
+													});
+												}}
+											>
+												+
+											</div>
+											<div>{orderQuantity}</div>
+											<div
+												className={styles.adjustQuantityBtn}
+												onClick={() => {
+													if (orderQuantity === 1) {
+														deleteItemFromCart({
+															item: order.slug,
+															id: order.id,
+														});
+														return;
+													}
+
+													updateCart({
+														item: order.slug,
+														quantity: -1,
+														id: order.id,
+													});
+												}}
+											>
+												-
+											</div>
+										</div>
 									</div>
 								);
 							})}
-						</div>
+						</>
 					) : (
 						<h4
 							className='display-text'
@@ -118,21 +166,24 @@ const CartModal = ({ close }: CartModal) => {
 					)}
 				</div>
 
-				<div className={styles.totalSection}>
-					<p className='standard-text uppercase'>Total</p>
-					<p
-						className='display-text'
-						style={{
-							fontSize: '1.125rem',
-						}}
-					>
-						{formatCurrency(total)}
-					</p>
-				</div>
-
-				<div>
-					<Button width='100%'>Check out</Button>
-				</div>
+				{orderedItems && orderedItems.length > 0 && (
+					<>
+						<div className={styles.totalSection}>
+							<p className='standard-text uppercase'>Total</p>
+							<p
+								className='display-text'
+								style={{
+									fontSize: '1.125rem',
+								}}
+							>
+								{formatCurrency(total)}
+							</p>
+						</div>
+						<div>
+							<Button width='100%'>Check out</Button>
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);
