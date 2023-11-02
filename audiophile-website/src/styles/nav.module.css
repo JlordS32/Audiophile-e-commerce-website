@@ -139,6 +139,10 @@
 	justify-content: space-between;
 }
 
+.modal .cartHeader h5 {
+	font-size: 1.25rem;
+}
+
 .modal .cartHeader div {
 	cursor: pointer;
 	opacity: 0.5;

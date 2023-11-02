@@ -27,6 +27,7 @@ const Navbar = () => {
 	const productPathPattern = /^\/(?!home$|$).+/;
 
 	const pageBlack = productPathPattern.test(location.pathname);
+	const checkout = location.pathname === '/checkout';
 
 	const closeCartModal = () => {
 		setCartModal(false);
@@ -84,17 +85,21 @@ const Navbar = () => {
 						<span>Earphones</span>
 					</NavLink>
 				</div>
-				<div
-					className={styles.checkout}
-					onClick={() => setCartModal(!cartModal)}
-				>
-					<img
-						src={cartIcon}
-						alt='cart icon'
-					/>
+				{!checkout ? (
+					<div
+						className={styles.checkout}
+						onClick={() => setCartModal(!cartModal)}
+					>
+						<img
+							src={cartIcon}
+							alt='cart icon'
+						/>
 
-					{total > 0 && <div className={styles.quantityTotal}>{total}</div>}
-				</div>
+						{total > 0 && <div className={styles.quantityTotal}>{total}</div>}
+					</div>
+				) : (
+					<div></div>
+				)}
 			</div>
 
 			<OffCanvas

@@ -38,7 +38,9 @@ const Home = () => {
 						>
 							XX99 Mark II Headphones
 						</h1>
-						<p className='text-white'>
+						<p className='text-white' style={{
+							opacity: '0.75'
+						}}>
 							Experience natural, lifelike audio and exceptional build quality
 							made for the passionate music enthusiast.
 						</p>

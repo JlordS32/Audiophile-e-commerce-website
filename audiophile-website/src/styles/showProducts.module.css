@@ -32,6 +32,11 @@
 
 .productDesc p {
 	margin-bottom: 2.5rem;
+	font-weight: 500;
+	font-size: 0.9375rem;
+	opacity: 0.5;
+	font-style: normal;
+	line-height: 1.5625rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -54,7 +59,8 @@
 		margin-top: 3.5rem !important;
 	}
 
-   .productDesc p, .productDesc h2 {
-      text-align: center;
-   }
+	.productDesc p,
+	.productDesc h2 {
+		text-align: center;
+	}
 }

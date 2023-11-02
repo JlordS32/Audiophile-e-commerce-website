@@ -3,7 +3,7 @@
 .form {
 	outline: 0;
 	border: 0;
-	width: 19.3125rem;
+	min-width: 19.3125rem;
 	height: 3.5rem;
 	flex-shrink: 0;
 	border-radius: 0.5rem;

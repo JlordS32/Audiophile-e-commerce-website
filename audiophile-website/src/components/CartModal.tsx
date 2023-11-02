@@ -1,3 +1,6 @@
+// rrd import
+import { Link } from 'react-router-dom';
+
 // react imports
 import { useRef, useEffect } from 'react';
 
@@ -33,7 +36,12 @@ const CartModal = ({ close }: CartModal) => {
 	const modalRef = useRef<HTMLDivElement>(null);
 	const [parent] = useAutoAnimate<HTMLDivElement>();
 
-	const { removeCart, updateCart, deleteItemFromCart } = UseShoppingCart();
+	const {
+		removeCart,
+		updateCart,
+		deleteItemFromCart,
+		total: totalQuantity,
+	} = UseShoppingCart();
 
 	const orderData = data.filter((item) =>
 		orderedItems.some((order: OrderType) => order.id === item.id)
@@ -62,12 +70,19 @@ const CartModal = ({ close }: CartModal) => {
 		<div className={styles.overlay}>
 			<div
 				className={styles.modal}
-				onBlur={close}
+				onBlur={(event) => {
+					// Check if the related target is the "Check out" button or one of its descendants
+					if (!event.currentTarget.contains(event.relatedTarget)) {
+						close();
+					}
+				}}
 				tabIndex={0}
 				ref={modalRef}
 			>
 				<div className={styles.cartHeader}>
-					<h5 className='text--h5'>Cart</h5>
+					<h5 className='uppercase'>
+						{totalQuantity > 0 ? `Cart (${totalQuantity})` : 'Cart'}
+					</h5>
 					{orderedItems && orderedItems.length > 0 && (
 						<div
 							className='standard-text'
@@ -121,7 +136,7 @@ const CartModal = ({ close }: CartModal) => {
 											<div
 												className={styles.adjustQuantityBtn}
 												onClick={() => {
-													if(orderQuantity && orderQuantity < 99) {
+													if (orderQuantity && orderQuantity < 99) {
 														updateCart({
 															item: order.slug,
 															quantity: 1,
@@ -186,7 +201,12 @@ const CartModal = ({ close }: CartModal) => {
 							</p>
 						</div>
 						<div>
-							<Button width='100%'>Check out</Button>
+							<Link
+								to='/checkout'
+								onClick={close}
+							>
+								<Button width='100%'>Check out</Button>
+							</Link>
 						</div>
 					</>
 				)}

@@ -50,6 +50,7 @@ a {
 	text-decoration: none;
 }
 
+
 .layout {
 	position: relative;
 }
@@ -59,6 +60,7 @@ a {
 	line-height: 56px;
 	letter-spacing: 2px;
 	text-transform: uppercase;
+	font-weight: 700;
 }
 
 .text--h2 {
@@ -66,6 +68,7 @@ a {
 	line-height: 44px;
 	letter-spacing: 1.5px;
 	text-transform: uppercase;
+	font-weight: 700;
 }
 
 .text--h3 {
@@ -73,6 +76,7 @@ a {
 	line-height: 36px;
 	letter-spacing: 1.15px;
 	text-transform: uppercase;
+	font-weight: 700;
 }
 
 .text--h4 {
