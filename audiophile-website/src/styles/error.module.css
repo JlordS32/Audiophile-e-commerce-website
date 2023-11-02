@@ -1,0 +1,9 @@
+.error {
+   padding-top: 8rem;
+   outline: 1px red solid;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}

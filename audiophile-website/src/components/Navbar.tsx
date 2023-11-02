@@ -24,9 +24,9 @@ const Navbar = () => {
 
 	const location = useLocation();
 
-	const productPathPattern = /^\/product\/[a-zA-Z0-9-]+$/;
+	const productPathPattern = /^\/(?!home$|$).+/;
 
-	const pageBlackBg = productPathPattern.test(location.pathname);
+	const pageBlack = productPathPattern.test(location.pathname);
 
 	const closeCartModal = () => {
 		setCartModal(false);
@@ -37,7 +37,7 @@ const Navbar = () => {
 			<div
 				className={styles.nav}
 				style={{
-					backgroundColor: pageBlackBg ? 'black' : 'transparent',
+					backgroundColor: pageBlack ? 'black' : 'transparent',
 				}}
 			>
 				<div
@@ -116,7 +116,7 @@ const Navbar = () => {
 			</OffCanvas>
 
 			{/* Opens modal when cart is clicked */}
-			{cartModal && <CartModal close={() => setCartModal(false)}/>}
+			{cartModal && <CartModal close={() => setCartModal(false)} />}
 		</>
 	);
 };

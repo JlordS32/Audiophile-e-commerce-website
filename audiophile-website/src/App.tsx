@@ -1,8 +1,7 @@
 // rrd import
 import {
 	createBrowserRouter,
-	RouterProvider,
-	ScrollRestoration,
+	RouterProvider
 } from 'react-router-dom';
 
 // context
@@ -10,56 +9,61 @@ import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 // component imports
 import Main from './layout/Main';
-import NotFound from './pages/NotFound';
+import Error from './pages/Error';
 import Home from './pages/Home';
 import Headphones from './pages/Headphones';
 import Speakers from './pages/Speakers';
 import Earphones from './pages/Earphones';
 import Checkout from './pages/Checkout';
-import { ToastContainer } from 'react-toastify';
+import ProductPage from './pages/ProductPage';
+import PageNotFound from './pages/PageNotFound';
 
 // library
-import ProductPage from './pages/ProductPage';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
 	const router = createBrowserRouter([
 		{
 			path: '/',
 			element: <Main />,
-			errorElement: <NotFound />,
+			errorElement: <Error />,
 			children: [
 				{
 					index: true,
 					element: <Home />,
-					errorElement: <NotFound />,
+					errorElement: <Error />,
 				},
 				{
 					path: 'headphones',
 					element: <Headphones />,
-					errorElement: <NotFound />,
+					errorElement: <Error />,
 				},
 				{
 					path: 'speakers',
 					element: <Speakers />,
-					errorElement: <NotFound />,
+					errorElement: <Error />,
 				},
 				{
 					path: 'earphones',
 					element: <Earphones />,
-					errorElement: <NotFound />,
+					errorElement: <Error />,
 				},
 				{
 					path: 'product/:productName',
 					element: <ProductPage />,
-					errorElement: <NotFound />,
+					errorElement: <Error />,
 				},
 				{
 					path: 'checkout',
 					element: <Checkout />,
-					errorElement: <NotFound />,
+					errorElement: <Error />,
 				}
 			],
 		},
+		{
+			path: '*',
+			element: <PageNotFound />,
+		}
 	]);
 
 	return (

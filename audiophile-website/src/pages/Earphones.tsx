@@ -1,6 +1,3 @@
-// images
-import yx1Image from '../assets/product-yx1-earphones/desktop/image-product.jpg';
-
 // components
 import ShowProduct from '../components/ShowProduct';
 import Footer from '../components/Footer';
@@ -8,6 +5,7 @@ import Header from '../components/Header';
 import Products from '../components/Products';
 import Review from '../components/Review';
 
+// data import
 import data from '../data/data.json';
 
 // types

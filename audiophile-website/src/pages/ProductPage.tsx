@@ -51,6 +51,10 @@ const ProductPage = () => {
 	// Filter product data
 	const productData = data?.filter((data) => data.slug === productName)[0];
 
+	if (!productData) {
+		throw new Error("Product doesn't exist!");
+	}
+
 	// Destructure product data
 	const {
 		id: ProductID,
