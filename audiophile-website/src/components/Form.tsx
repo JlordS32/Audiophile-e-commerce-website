@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from '../styles/form.module.css';
 import { UseShoppingCart } from '../context/ShoppingCartContext';
+
+type PaymentType = 'e-money' | 'cash' | '';
 
 type FormProps = {
 	placeholder?: string;
@@ -8,14 +10,17 @@ type FormProps = {
 	label?: string;
 	error?: boolean;
 	onChange?: () => void;
+	type?: string;
 };
 
 type RadioProps = {
 	value: string;
 	label: string;
 	id?: string;
+	selectedValue?: string;
+	onClick?: (value: PaymentType) => void;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
-
 
 const Form = {
 	// Structed this component this way to make it into a reusable component just like with React Bootstrap
@@ -25,6 +30,7 @@ const Form = {
 		label,
 		error,
 		onChange,
+		type,
 	}: FormProps) {
 		const inputId = id ? id : `radio-${crypto.randomUUID()}`;
 		return (
@@ -43,7 +49,7 @@ const Form = {
 					</label>
 				)}
 				<input
-					type='text'
+					type={type ? type : 'text'}
 					placeholder={placeholder}
 					aria-label={`Input: ${placeholder}`}
 					name={inputId}
@@ -58,18 +64,33 @@ const Form = {
 			</div>
 		);
 	},
-	Radio: function Radio({ value = '', label = '', id }: RadioProps) {
+	Radio: function Radio({
+		value = '',
+		label = '',
+		id,
+		onClick,
+		selectedValue = '',
+	}: RadioProps) {
 		const [checked, setChecked] = useState<boolean>(false);
+
+		// useref
+		const radioRef = useRef<HTMLInputElement>(null);
 
 		const inputId = id ? id : `radio-${crypto.randomUUID()}`;
 
+		useEffect(() => {
+			setChecked(selectedValue === radioRef.current?.value);
+		});
+
 		return (
 			<div
-				className={`${styles.form} ${checked ? styles.checked : ''}`}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
+				className={`${styles.form} ${checked ? styles.checked : ''} ${
+					styles.radioContainer
+				}`}
+				onClick={() => {
+					if (onClick) {
+						onClick(radioRef.current?.value as PaymentType);
+					}
 				}}
 			>
 				<label
@@ -85,8 +106,9 @@ const Form = {
 						id={inputId}
 						name={inputId}
 						className={styles.radio}
-						onClick={() => setChecked(!checked)}
+						ref={radioRef}
 						checked={checked}
+						readOnly
 					/>
 					<span
 						style={{
@@ -102,15 +124,24 @@ const Form = {
 	},
 
 	Counter: function Counter() {
-
-      const { quantity, increaseQuantity, decreaseQuantity } = UseShoppingCart();
+		const { quantity, increaseQuantity, decreaseQuantity } = UseShoppingCart();
 
 		return (
 			<div>
 				<div className={styles.counter}>
-					<span className={styles.increment} onClick={() => decreaseQuantity()}>-</span>
+					<span
+						className={styles.increment}
+						onClick={() => decreaseQuantity()}
+					>
+						-
+					</span>
 					<span className={styles.value}>{quantity}</span>
-					<span className={styles.decrement} onClick={() => increaseQuantity()}>+</span>
+					<span
+						className={styles.decrement}
+						onClick={() => increaseQuantity()}
+					>
+						+
+					</span>
 				</div>
 			</div>
 		);

@@ -1,12 +1,110 @@
 .checkoutContainer {
 	padding-top: 7rem;
 	background: var(--grey);
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.goBack {
+	font-size: 0.9375rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.5625rem;
+	opacity: 0.5;
+	padding: 5rem 0 2.3rem 0;
+}
+
+.goBack a:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .checkout {
 	width: var(--standard-width);
+	padding-bottom: 8rem;
+}
+
+.checkout form {
+	display: flex;
+	gap: 0 2rem;
+}
+
+.checkoutForm {
+	background-color: var(--white);
+	width: 47rem;
+	padding: 3.35rem 3rem;
+	border-radius: 0.5rem;
+}
+
+/* Form Details */
+.billingDetails > p,
+.shippingInfo > p,
+.paymentDetails > p {
+	color: var(--primary);
+	font-weight: 700;
+	font-size: 0.8125rem;
+	text-transform: uppercase;
+	padding-top: 2.5rem;
+}
+
+.billingDetails > .grid,
+.shippingInfo > .grid,
+.paymentDetails > .grid {
+	margin-top: 0.75rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5rem 1rem;
+}
+
+/* Shipping Info */
+.shippingInfo > .grid .address {
+	grid-column: span 2;
+}
+
+/* Payment Details  */
+.paymentDetails > .grid label {
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 700;
+	letter-spacing: -0.01338rem;
+}
+
+/* Summary */
+.summary {
+	width: 21.875rem;
+	height: 38.25rem;
+	background-color: white;
+	border-radius: 0.5rem;
+	padding: 2rem;
+}
+
+.summary h4 {
+	color: #000;
+	font-family: Manrope;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 0.08038rem;
+	text-transform: uppercase;
+}
+
+.ordersContainer {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem 0;
+   padding: 2rem 0;
+}
+
+.order {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0 1rem;
+}
+
+.order > .quantity {
+   margin-left: auto;
 }
