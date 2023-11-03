@@ -154,3 +154,30 @@
 	color: var(--primary);
 	font-weight: 700;
 }
+
+@media screen and (max-width: 1050px) {
+	.checkout form {
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.checkoutForm,
+	.summary {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 767px) {
+
+   .grid {
+      grid-template-columns: 1fr !important;
+   }
+
+	.shippingInfo > .grid .address {
+		grid-column: auto;
+	}
+
+   .eMoney {
+      padding-top: 2rem;
+   }
+}

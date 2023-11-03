@@ -168,12 +168,7 @@ const Checkout = () => {
 
 							{selectedRadio === 'e-money' && (
 								<div
-									style={{
-										paddingTop: '1rem',
-										display: 'grid',
-										gridTemplateColumns: 'repeat(2, 1fr)',
-										gap: '0 1rem',
-									}}
+									className={`${styles.grid} ${styles.eMoney}`}
 								>
 									<Form.Text
 										placeholder='238521993'
