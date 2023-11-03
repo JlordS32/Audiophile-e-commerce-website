@@ -14,7 +14,6 @@ import { cleanUpString, fetchData, formatCurrency } from '../utility/utilities';
 
 // data
 import data from '../data/data.json';
-import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 // types
 type PaymentType = 'e-money' | 'cash' | '';
@@ -26,7 +25,19 @@ type OrderType = {
 };
 
 const Checkout = () => {
+	// states
 	const [selectedRadio, setSelectedRadio] = useState<PaymentType>('');
+	const [formData, setFormData] = useState([]);
+	const [formErrors, setFormErrors] = useState({
+		name: '',
+		email: '',
+		phone: '',
+		address: '',
+		postCode: '',
+		city: '',
+		country: '',
+		paymentMethod: '',
+	});
 
 	const orders = fetchData('cart') ?? [];
 
@@ -54,13 +65,31 @@ const Checkout = () => {
 		'wireless',
 	];
 
-	console.log(orderData);
-
 	const navigate = useNavigate();
 
 	const handleClick = (value: PaymentType) => {
 		setSelectedRadio(value ?? '');
 	};
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+
+		// Implement your validation logic here
+		if (name === 'email') {
+			// Example email validation
+			const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+			if (!isValidEmail) {
+				setFormErrors({ ...formErrors, email: 'Invalid email address' });
+			} else {
+				setFormErrors({ ...formErrors, email: '' });
+			}
+		}
+	};
+
+	useEffect(() => {
+		console.log({ formData, formErrors });
+	}, [formData]);
 
 	return (
 		<div className={styles.checkoutContainer}>
@@ -72,13 +101,17 @@ const Checkout = () => {
 					<a>Go back</a>
 				</div>
 
-				<RRDForm>
+				<RRDForm
+					onSubmit={() => {
+						console.log(formData);
+					}}
+				>
 					<div className={styles.checkoutForm}>
 						<h3 className='text--h3'>Checkout</h3>
-						<div className={styles.billingDetails}>
+						<section className={styles.billingDetails}>
 							<p>Billing Details</p>
 							<div className={styles.grid}>
-								<div
+								<fieldset
 									style={{
 										gridArea: 'auto',
 									}}
@@ -86,9 +119,11 @@ const Checkout = () => {
 									<Form.Text
 										placeholder='Alexei Wart'
 										label='Name'
+										id='name'
+										onChange={handleInputChange}
 									/>
-								</div>
-								<div
+								</fieldset>
+								<fieldset
 									style={{
 										gridArea: 'auto',
 									}}
@@ -96,9 +131,12 @@ const Checkout = () => {
 									<Form.Text
 										placeholder='alexei@mail.com'
 										label='Email Address'
+										type='email'
+										id='email'
+										onChange={handleInputChange}
 									/>
-								</div>
-								<div
+								</fieldset>
+								<fieldset
 									style={{
 										gridArea: 'auto',
 									}}
@@ -106,45 +144,54 @@ const Checkout = () => {
 									<Form.Text
 										placeholder='+1 202-555-0136'
 										label='Phone Number'
+										id='phone'
+										type='phone'
+										onChange={handleInputChange}
 									/>
-								</div>
+								</fieldset>
 							</div>
-						</div>
+						</section>
 
-						<div className={styles.shippingInfo}>
+						<section className={styles.shippingInfo}>
 							<p>Shipping info</p>
 
 							<div className={styles.grid}>
-								<div className={styles.address}>
+								<fieldset className={styles.address}>
 									<Form.Text
 										label='Address'
 										placeholder='1137 Williams Avenue'
+										type='text'
+										id='address'
 									/>
-								</div>
-								<div>
+								</fieldset>
+								<fieldset>
 									<Form.Text
 										label='ZIP Code'
 										placeholder='10001'
+										id='postcode'
+										type='number'
 									/>
-								</div>
-								<div>
+								</fieldset>
+								<fieldset>
 									<Form.Text
 										label='City'
 										placeholder='New York'
+										id='city'
 									/>
-								</div>
-								<div>
+								</fieldset>
+								<fieldset>
 									<Form.Text
 										label='Country'
 										placeholder='United States'
+										id='country'
 									/>
-								</div>
+								</fieldset>
 							</div>
-						</div>
+						</section>
 
-						<div className={styles.paymentDetails}>
+						<section className={styles.paymentDetails}>
 							<p>Payment details</p>
-							<div className={styles.grid}>
+							<fieldset className={styles.grid}>
 								<label
 									style={{
 										gridRow: 'span 2',
@@ -157,19 +204,19 @@ const Checkout = () => {
 									label='e-Money'
 									onClick={handleClick}
 									selectedValue={selectedRadio}
+									id='eMoney'
 								/>
 								<Form.Radio
 									value='cash'
 									label='Cash on Delivery'
 									onClick={handleClick}
 									selectedValue={selectedRadio}
+									id='cashOnDelivery'
 								/>
-							</div>
+							</fieldset>
 
 							{selectedRadio === 'e-money' && (
-								<div
-									className={`${styles.grid} ${styles.eMoney}`}
-								>
+								<div className={`${styles.grid} ${styles.eMoney}`}>
 									<Form.Text
 										placeholder='238521993'
 										label='e-Money Number'
@@ -215,7 +262,7 @@ const Checkout = () => {
 									</div>
 								</div>
 							)}
-						</div>
+						</section>
 					</div>
 					<div className={styles.summary}>
 						<h4>Summary</h4>

@@ -50,6 +50,10 @@ a {
 	text-decoration: none;
 }
 
+fieldset {
+	border: none;
+}
+
 
 .layout {
 	position: relative;

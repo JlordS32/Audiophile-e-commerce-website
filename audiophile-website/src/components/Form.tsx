@@ -9,7 +9,7 @@ type FormProps = {
 	id?: string;
 	label?: string;
 	error?: boolean;
-	onChange?: () => void;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	type?: string;
 };
 
@@ -18,21 +18,20 @@ type RadioProps = {
 	label: string;
 	id?: string;
 	selectedValue?: string;
-	onClick?: (value: PaymentType) => void;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (value: PaymentType) => void
 };
 
 const Form = {
-	// Structed this component this way to make it into a reusable component just like with React Bootstrap
+	// Structed this component this way to make it int	o a reusable component just like with React Bootstrap
 	Text: function Text({
 		placeholder = '',
 		id,
 		label,
 		error,
-		onChange,
 		type,
+		onChange
 	}: FormProps) {
-		const inputId = id ? id : `radio-${crypto.randomUUID()}`;
+		const inputId = id ? id : `text-${crypto.randomUUID()}`;
 		return (
 			<div
 				style={{
@@ -55,11 +54,8 @@ const Form = {
 					name={inputId}
 					// second class is for error styles
 					className={`${styles.form} ${error ? styles.error : ''}`}
-					onChange={() => {
-						// if there's no onChange function passed down then function returns.
-						if (!onChange) return;
-						onChange();
-					}}
+					onChange={onChange}
+					required
 				/>
 			</div>
 		);
