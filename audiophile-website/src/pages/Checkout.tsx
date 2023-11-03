@@ -252,18 +252,28 @@ const Checkout = () => {
 								);
 							})}
 						</div>
-						<div>Total: {formatCurrency(total)}</div>
-						<div>Shipping: {formatCurrency(50)}</div>
-						<div>
-							VAT {`(INCLUDED)`}: {formatCurrency(total * 1.2 - total)}
+						<div className={styles.summaryFields}>
+							<p className={styles.fields}>Total</p> {formatCurrency(total)}
+						</div>
+						<div className={styles.summaryFields}>
+							<p className={styles.fields}>Shipping</p> {formatCurrency(50)}
+						</div>
+						<div className={styles.summaryFields}>
+							<p className={styles.fields}>VAT {`(included)`}:</p>{' '}
+							{formatCurrency(total * 1.2 - total)}
 						</div>
 
-						<div className='grandTotal d-flex'>
-							<p>Grand total</p>
+						<div className={`${styles.summaryFields} ${styles.grandTotal}`}>
+							<p className={styles.fields}>Grand total</p>
 							<p>{formatCurrency(total * 1.2 + 50)}</p>
 						</div>
 
-						<Button>Continue & Pay</Button>
+						<Button
+							width='100%'
+							type='submit'
+						>
+							Continue & Pay
+						</Button>
 					</div>
 				</RRDForm>
 			</div>

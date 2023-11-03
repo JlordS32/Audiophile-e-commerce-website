@@ -7,11 +7,18 @@ type ButtonProps = {
 	children?: ReactNode;
 	onClick?: () => void;
 	width?: string;
+	type?: 'button' | 'submit' | 'reset';
 };
 
-const Button = ({ variant = 'primary', children, onClick, width }: ButtonProps) => {
+const Button = ({
+	variant = 'primary',
+	children,
+	onClick,
+	width,
+	type,
+}: ButtonProps) => {
 	return (
-		<div
+		<button
 			className={`${styles.btn} ${styles[`btn--${variant}`]}`}
 			onClick={() => {
 				if (!onClick) return;
@@ -20,9 +27,10 @@ const Button = ({ variant = 'primary', children, onClick, width }: ButtonProps) 
 			style={{
 				width: width ? width : '',
 			}}
+			type={type ? type : 'button'}
 		>
 			{children}
-		</div>
+		</button>
 	);
 };
 

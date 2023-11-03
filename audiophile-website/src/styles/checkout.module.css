@@ -29,6 +29,8 @@
 .checkout form {
 	display: flex;
 	gap: 0 2rem;
+	justify-content: space-between;
+	align-items: start;
 }
 
 .checkoutForm {
@@ -74,7 +76,6 @@
 /* Summary */
 .summary {
 	width: 21.875rem;
-	height: 38.25rem;
 	background-color: white;
 	border-radius: 0.5rem;
 	padding: 2rem;
@@ -92,19 +93,64 @@
 }
 
 .ordersContainer {
-   display: flex;
-   flex-direction: column;
-   gap: 1.5rem 0;
-   padding: 2rem 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem 0;
+	padding: 2rem 0;
 }
 
 .order {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 0 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0 1rem;
 }
 
 .order > .quantity {
-   margin-left: auto;
+	margin-left: auto;
+	color: #000;
+	font-size: 0.9375rem;
+	font-style: normal;
+	font-weight: 700;
+	opacity: 0.5;
+}
+
+.orderDetails p {
+	font-weight: 700;
+	line-height: 1.5625rem;
+	text-transform: uppercase;
+}
+
+.orderDetails p:first-child {
+	font-size: 0.9375rem;
+}
+
+.orderDetails p:last-child {
+	font-size: 0.875rem;
+	opacity: 0.5;
+}
+
+.summaryFields {
+	display: flex;
+	justify-content: space-between;
+	font-weight: 700;
+}
+
+.fields {
+	font-size: 0.9375rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.5625rem;
+	text-transform: uppercase;
+	opacity: 0.5;
+}
+
+.grandTotal {
+	margin-top: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.grandTotal p:last-child {
+	color: var(--primary);
+	font-weight: 700;
 }

@@ -16,6 +16,7 @@
 	text-transform: uppercase;
 	text-decoration: none;
 	transition: 150ms ease-in;
+	border: 0;
 }
 
 .btn--primary {
