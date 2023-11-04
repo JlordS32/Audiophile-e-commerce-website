@@ -9,6 +9,7 @@ type FormProps = {
 	id?: string;
 	label?: string;
 	error?: boolean;
+	errorMsg?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	type?: string;
 };
@@ -18,7 +19,7 @@ type RadioProps = {
 	label: string;
 	id?: string;
 	selectedValue?: string;
-	onClick?: (value: PaymentType) => void
+	onClick?: (value: PaymentType) => void;
 };
 
 const Form = {
@@ -27,9 +28,10 @@ const Form = {
 		placeholder = '',
 		id,
 		label,
-		error,
+		error = false,
+		errorMsg,
 		type,
-		onChange
+		onChange,
 	}: FormProps) {
 		const inputId = id ? id : `text-${crypto.randomUUID()}`;
 		return (
@@ -40,12 +42,27 @@ const Form = {
 				}}
 			>
 				{label && (
-					<label
-						htmlFor={inputId}
-						className={styles.label}
+					<div
+						className='d-flex'
+						style={{
+							justifyContent: 'space-between',
+						}}
 					>
-						{label}
-					</label>
+						<label
+							htmlFor={inputId}
+							className={`${styles.label} ${error ? styles.error : ''}`}
+						>
+							{label}
+						</label>
+						{error && (
+							<label
+								htmlFor={inputId}
+								className={`${styles.label} ${error ? styles.error : ''}`}
+							>
+								{errorMsg ?? 'Error'}
+							</label>
+						)}
+					</div>
 				)}
 				<input
 					type={type ? type : 'text'}
@@ -55,7 +72,6 @@ const Form = {
 					// second class is for error styles
 					className={`${styles.form} ${error ? styles.error : ''}`}
 					onChange={onChange}
-					required
 				/>
 			</div>
 		);

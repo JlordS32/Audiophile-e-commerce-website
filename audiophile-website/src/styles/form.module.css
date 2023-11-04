@@ -1,5 +1,41 @@
 /* Form Control */
 
+@keyframes vibrate {
+	0% {
+		transform: translate(0, 0);
+	}
+	10% {
+		transform: translate(1px, 1px);
+	}
+	20% {
+		transform: translate(-1px, -1px);
+	}
+	30% {
+		transform: translate(1px, -1px);
+	}
+	40% {
+		transform: translate(-1px, 1px);
+	}
+	50% {
+		transform: translate(1px, 1px);
+	}
+	60% {
+		transform: translate(-1px, -1px);
+	}
+	70% {
+		transform: translate(1px, -1px);
+	}
+	80% {
+		transform: translate(-1px, 1px);
+	}
+	90% {
+		transform: translate(1px, 1px);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
 .form {
 	outline: 0;
 	border: 0;
@@ -27,8 +63,9 @@
 
 .form.error {
 	border-radius: 0.5rem;
-	outline: 1px solid var(--error);
+	border: 1px solid var(--error);
 	background: var(--white);
+	color: red;
 }
 
 .form::placeholder {
@@ -95,6 +132,14 @@
 	font-weight: 700;
 	letter-spacing: -0.01338rem;
 	cursor: pointer;
+}
+
+.label.error {
+	color: red;
+}
+
+.error {
+	animation: 0.5s vibrate ease-in;
 }
 
 .counter {

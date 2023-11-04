@@ -24,20 +24,56 @@ type OrderType = {
 	item: string;
 };
 
+interface FormError {
+	name: boolean;
+	email: boolean;
+	phone: boolean;
+	address: boolean;
+	postcode: boolean;
+	city: boolean;
+	country: boolean;
+	paymentMethod: boolean;
+}
+
+interface FormData {
+	name: '';
+	email: '';
+	phone: '';
+	address: '';
+	postcode: '';
+	city: '';
+	country: '';
+	paymentMethod: '';
+}
+
 const Checkout = () => {
-	// states
-	const [selectedRadio, setSelectedRadio] = useState<PaymentType>('');
-	const [formData, setFormData] = useState([]);
-	const [formErrors, setFormErrors] = useState({
+	// default values
+	const defaultFormError: FormError = {
+		name: false,
+		email: false,
+		phone: false,
+		address: false,
+		postcode: false,
+		city: false,
+		country: false,
+		paymentMethod: false,
+	};
+
+	const defaultFormData: FormData = {
 		name: '',
 		email: '',
 		phone: '',
 		address: '',
-		postCode: '',
+		postcode: '',
 		city: '',
 		country: '',
 		paymentMethod: '',
-	});
+	};
+
+	// states
+	const [selectedRadio, setSelectedRadio] = useState<PaymentType>('');
+	const [formData, setFormData] = useState<FormData>(defaultFormData);
+	const [formErrors, setFormErrors] = useState<FormError>(defaultFormError);
 
 	const orders = fetchData('cart') ?? [];
 
@@ -75,21 +111,35 @@ const Checkout = () => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 
-		// Implement your validation logic here
-		if (name === 'email') {
-			// Example email validation
-			const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-			if (!isValidEmail) {
-				setFormErrors({ ...formErrors, email: 'Invalid email address' });
-			} else {
-				setFormErrors({ ...formErrors, email: '' });
+		// // Implement your validation logic here
+		// if (name === 'email') {
+		// 	// Example email validation
+		// 	const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+		// 	if (!isValidEmail) {
+		// 		setFormErrors({ ...formErrors, email: 'Invalid email address' });
+		// 	} else {
+		// 		setFormErrors({ ...formErrors, email: '' });
+		// 	}
+		// }
+	};
+
+	const handleSubmit = () => {
+		Object.entries(formData).forEach(([key, value]) => {
+			if (!value && value === '') {
+				console.log(key, value);
+				setFormErrors(prev => {
+					return {
+						...prev,
+						[key]: true
+					}
+				});
 			}
-		}
+		});
 	};
 
 	useEffect(() => {
-		console.log({ formData, formErrors });
-	}, [formData]);
+		console.log(formErrors);
+	}, [formErrors]);
 
 	return (
 		<div className={styles.checkoutContainer}>
@@ -101,11 +151,7 @@ const Checkout = () => {
 					<a>Go back</a>
 				</div>
 
-				<RRDForm
-					onSubmit={() => {
-						console.log(formData);
-					}}
-				>
+				<RRDForm>
 					<div className={styles.checkoutForm}>
 						<h3 className='text--h3'>Checkout</h3>
 						<section className={styles.billingDetails}>
@@ -121,6 +167,7 @@ const Checkout = () => {
 										label='Name'
 										id='name'
 										onChange={handleInputChange}
+										error={formErrors.name}
 									/>
 								</fieldset>
 								<fieldset
@@ -134,6 +181,7 @@ const Checkout = () => {
 										type='email'
 										id='email'
 										onChange={handleInputChange}
+										error={formErrors.email}
 									/>
 								</fieldset>
 								<fieldset
@@ -147,6 +195,7 @@ const Checkout = () => {
 										id='phone'
 										type='phone'
 										onChange={handleInputChange}
+										error={formErrors.phone}
 									/>
 								</fieldset>
 							</div>
@@ -162,6 +211,8 @@ const Checkout = () => {
 										placeholder='1137 Williams Avenue'
 										type='text'
 										id='address'
+										onChange={handleInputChange}
+										error={formErrors.address}
 									/>
 								</fieldset>
 								<fieldset>
@@ -170,6 +221,8 @@ const Checkout = () => {
 										placeholder='10001'
 										id='postcode'
 										type='number'
+										onChange={handleInputChange}
+										error={formErrors.postcode}
 									/>
 								</fieldset>
 								<fieldset>
@@ -177,6 +230,8 @@ const Checkout = () => {
 										label='City'
 										placeholder='New York'
 										id='city'
+										onChange={handleInputChange}
+										error={formErrors.city}
 									/>
 								</fieldset>
 								<fieldset>
@@ -184,6 +239,8 @@ const Checkout = () => {
 										label='Country'
 										placeholder='United States'
 										id='country'
+										onChange={handleInputChange}
+										error={formErrors.country}
 									/>
 								</fieldset>
 							</div>
@@ -221,11 +278,13 @@ const Checkout = () => {
 										placeholder='238521993'
 										label='e-Money Number'
 										type='number'
+										onChange={handleInputChange}
 									/>
 									<Form.Text
 										placeholder='6891'
 										label='e-Money PIN'
 										type='number'
+										onChange={handleInputChange}
 									/>
 								</div>
 							)}
@@ -313,6 +372,7 @@ const Checkout = () => {
 						<Button
 							width='100%'
 							type='submit'
+							onClick={handleSubmit}
 						>
 							Continue & Pay
 						</Button>
