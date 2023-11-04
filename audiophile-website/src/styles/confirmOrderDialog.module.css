@@ -1,0 +1,14 @@
+.confirmOrderDialog {
+	width: 33.75rem;
+	height: 36.3125rem;
+	border-radius: 0.5rem;
+	border: 0;
+	padding: 3rem;
+	overflow: hidden;
+
+}
+
+.confirmOrderDialog::backdrop {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+

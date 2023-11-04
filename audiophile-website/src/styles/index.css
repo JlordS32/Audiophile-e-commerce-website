@@ -54,6 +54,11 @@ fieldset {
 	border: none;
 }
 
+dialog {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
 .layout {
 	position: relative;
@@ -157,6 +162,7 @@ fieldset {
 	font-style: normal;
 	font-weight: 500;
 	line-height: 1.5625rem;
+	opacity: 0.5;
 }
 
 .uppercase {
