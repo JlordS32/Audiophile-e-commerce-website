@@ -54,7 +54,7 @@ interface FormData {
 	postcode: '';
 	city: '';
 	country: '';
-	paymentMethod: '';
+	paymentMethod: PaymentType;
 }
 
 const Checkout = () => {
@@ -138,24 +138,15 @@ const Checkout = () => {
 
 	const navigate = useNavigate();
 
-	const handleClick = (value: PaymentType) => {
+	const handleClick = (value: PaymentType, id: string) => {
 		setSelectedRadio(value ?? '');
+
+		setFormData({ ...formData, [id]: value });
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
-
-		// // Implement your validation logic here
-		// if (name === 'email') {
-		// 	// Example email validation
-		// 	const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-		// 	if (!isValidEmail) {
-		// 		setFormErrors({ ...formErrors, email: 'Invalid email address' });
-		// 	} else {
-		// 		setFormErrors({ ...formErrors, email: '' });
-		// 	}
-		// }
 	};
 
 	const handleSubmit = () => {
@@ -175,6 +166,17 @@ const Checkout = () => {
 		});
 	};
 
+	const handleFormSubmit = (e: React.FormEvent) => {
+		const isValid = Object.entries(formErrors).every(([key, value]) => {
+			if (value.error === true) return false;
+			else return true;
+		});
+
+		console.log(formErrors);
+
+		console.log(isValid);
+	};
+
 	return (
 		<div className={styles.checkoutContainer}>
 			<div className={styles.checkout}>
@@ -185,11 +187,7 @@ const Checkout = () => {
 					<a>Go back</a>
 				</div>
 
-				<RRDForm
-					onSubmit={(e) => {
-						e.preventDefault();
-					}}
-				>
+				<RRDForm onSubmit={handleFormSubmit}>
 					<div className={styles.checkoutForm}>
 						<h3 className='text--h3'>Checkout</h3>
 						<section className={styles.billingDetails}>
@@ -259,10 +257,10 @@ const Checkout = () => {
 								</fieldset>
 								<fieldset>
 									<Form.Text
-										label='ZIP Code'
+										label='Postcode'
 										placeholder='10001'
 										id='postcode'
-										type='number'
+										type='text'
 										onChange={handleInputChange}
 										error={formErrors.postcode.error}
 										errorMsg={formErrors.postcode.errorMsg}
@@ -306,14 +304,16 @@ const Checkout = () => {
 									label='e-Money'
 									onClick={handleClick}
 									selectedValue={selectedRadio}
-									id='eMoney'
+									name='eMoney'
+									onChange={handleInputChange}
 								/>
 								<Form.Radio
 									value='cash'
 									label='Cash on Delivery'
 									onClick={handleClick}
 									selectedValue={selectedRadio}
-									id='cashOnDelivery'
+									name='cashOnDelivery'
+									onChange={handleInputChange}
 								/>
 							</fieldset>
 
@@ -322,12 +322,14 @@ const Checkout = () => {
 									<Form.Text
 										placeholder='238521993'
 										label='e-Money Number'
+										id='paymentMethod'
 										type='number'
 										onChange={handleInputChange}
 									/>
 									<Form.Text
 										placeholder='6891'
 										label='e-Money PIN'
+										id='paymentMethod'
 										type='number'
 										onChange={handleInputChange}
 									/>

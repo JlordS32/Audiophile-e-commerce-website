@@ -77,10 +77,10 @@ export function validateData(key: string, data: string) {
 				errorMsg: 'Invalid phone number',
 			};
 		case 'postcode':
-			const postcodeRegex = /^[A-Z]{1,2}\d{1,2} ?\d[A-Z]{2}$/i;
+			const postcodeRegex = /^(0[289][0-9]{2})|([1-9][0-9]{3})$/i;
 			return {
 				valid: postcodeRegex.test(data),
-				errorMsg: 'Invalid postCode number',
+				errorMsg: 'Invalid postcode number',
 			};
 		default:
 			const dataNotEmpty = data !== '';

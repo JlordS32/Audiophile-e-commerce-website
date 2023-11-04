@@ -18,8 +18,9 @@ type RadioProps = {
 	value: string;
 	label: string;
 	id?: string;
+	name?: string;
 	selectedValue?: string;
-	onClick?: (value: PaymentType) => void;
+	onClick?: (value: PaymentType, id: string) => void;
 };
 
 const Form = {
@@ -80,6 +81,7 @@ const Form = {
 		value = '',
 		label = '',
 		id,
+		name,
 		onClick,
 		selectedValue = '',
 	}: RadioProps) {
@@ -101,7 +103,7 @@ const Form = {
 				}`}
 				onClick={() => {
 					if (onClick) {
-						onClick(radioRef.current?.value as PaymentType);
+						onClick(radioRef.current?.value as PaymentType, radioRef.current?.id as string);
 					}
 				}}
 			>
@@ -115,8 +117,8 @@ const Form = {
 					<input
 						type='radio'
 						value={value}
-						id={inputId}
-						name={inputId}
+						id='paymentMethod'
+						name={name}
 						className={styles.radio}
 						ref={radioRef}
 						checked={checked}
