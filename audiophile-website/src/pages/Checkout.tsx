@@ -12,7 +12,9 @@ import Form from '../components/Form';
 import Button from '../components/Button';
 import {
 	cleanUpString,
+	createFormSessionStorage,
 	fetchData,
+	fetchSessionData,
 	formatCurrency,
 	validateData,
 } from '../utility/utilities';
@@ -47,13 +49,13 @@ interface FormError {
 }
 
 interface FormData {
-	name: '';
-	email: '';
-	phone: '';
-	address: '';
-	postcode: '';
-	city: '';
-	country: '';
+	name: string | '';
+	email: string | '';
+	phone: string | '';
+	address: string | '';
+	postcode: string | '';
+	city: string | '';
+	country: string | '';
 	paymentMethod: PaymentType;
 }
 
@@ -142,11 +144,13 @@ const Checkout = () => {
 		setSelectedRadio(value ?? '');
 
 		setFormData({ ...formData, [id]: value });
+		createFormSessionStorage({ ...formData, [id]: value });
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
+		createFormSessionStorage({ ...formData, [name]: value });
 	};
 
 	const handleSubmit = () => {
@@ -177,6 +181,16 @@ const Checkout = () => {
 		console.log(isValid);
 	};
 
+	useEffect(() => {
+		const sessionFormData = fetchSessionData('form') ?? defaultFormData;
+
+		setFormData(sessionFormData);
+	}, []);
+
+	useEffect(() => {
+		console.log(formData);
+	}, [formData]);
+
 	return (
 		<div className={styles.checkoutContainer}>
 			<div className={styles.checkout}>
@@ -205,6 +219,7 @@ const Checkout = () => {
 										onChange={handleInputChange}
 										error={formErrors.name.error}
 										errorMsg={formErrors.name.errorMsg}
+										value={formData.name}
 									/>
 								</fieldset>
 								<fieldset
@@ -220,6 +235,7 @@ const Checkout = () => {
 										onChange={handleInputChange}
 										error={formErrors.email.error}
 										errorMsg={formErrors.email.errorMsg}
+										value={formData.email}
 									/>
 								</fieldset>
 								<fieldset
@@ -235,6 +251,7 @@ const Checkout = () => {
 										onChange={handleInputChange}
 										error={formErrors.phone.error}
 										errorMsg={formErrors.phone.errorMsg}
+										value={formData.phone}
 									/>
 								</fieldset>
 							</div>
@@ -253,6 +270,7 @@ const Checkout = () => {
 										onChange={handleInputChange}
 										error={formErrors.address.error}
 										errorMsg={formErrors.address.errorMsg}
+										value={formData.address}
 									/>
 								</fieldset>
 								<fieldset>
@@ -264,6 +282,7 @@ const Checkout = () => {
 										onChange={handleInputChange}
 										error={formErrors.postcode.error}
 										errorMsg={formErrors.postcode.errorMsg}
+										value={formData.postcode}
 									/>
 								</fieldset>
 								<fieldset>
@@ -274,6 +293,7 @@ const Checkout = () => {
 										onChange={handleInputChange}
 										error={formErrors.city.error}
 										errorMsg={formErrors.city.errorMsg}
+										value={formData.city}
 									/>
 								</fieldset>
 								<fieldset>
@@ -283,7 +303,8 @@ const Checkout = () => {
 										id='country'
 										onChange={handleInputChange}
 										error={formErrors.country.error}
-										errorMsg={formErrors.city.errorMsg}
+										errorMsg={formErrors.country.errorMsg}
+										value={formData.country}
 									/>
 								</fieldset>
 							</div>
@@ -305,7 +326,6 @@ const Checkout = () => {
 									onClick={handleClick}
 									selectedValue={selectedRadio}
 									name='eMoney'
-									onChange={handleInputChange}
 								/>
 								<Form.Radio
 									value='cash'
@@ -313,7 +333,6 @@ const Checkout = () => {
 									onClick={handleClick}
 									selectedValue={selectedRadio}
 									name='cashOnDelivery'
-									onChange={handleInputChange}
 								/>
 							</fieldset>
 

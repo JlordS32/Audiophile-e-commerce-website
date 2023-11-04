@@ -8,6 +8,7 @@ type FormProps = {
 	placeholder?: string;
 	id?: string;
 	label?: string;
+	value?: string;
 	error?: boolean;
 	errorMsg?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -33,6 +34,7 @@ const Form = {
 		errorMsg,
 		type,
 		onChange,
+		value
 	}: FormProps) {
 		const inputId = id ? id : `text-${crypto.randomUUID()}`;
 		return (
@@ -70,6 +72,7 @@ const Form = {
 					placeholder={placeholder}
 					aria-label={`Input: ${placeholder}`}
 					name={inputId}
+					value={value}
 					// second class is for error styles
 					className={`${styles.form} ${error ? styles.error : ''}`}
 					onChange={onChange}

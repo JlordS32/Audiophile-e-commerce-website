@@ -2,9 +2,22 @@ import data from '../data/data.json';
 
 // types
 
+type PaymentType = 'e-money' | 'cash' | '';
+
 interface CartType {
 	item: string;
 	quantity: number;
+}
+
+interface FormData {
+	name: string;
+	email: string;
+	phone: string;
+	address: string;
+	postcode: string;
+	city: string;
+	country: string;
+	paymentMethod: PaymentType;
 }
 
 export function formatCurrency(amount: number) {
@@ -91,7 +104,7 @@ export function validateData(key: string, data: string) {
 	}
 }
 
-export function createFormSessionStorage(value: string) {
+export function createFormSessionStorage(value: FormData) {
 	sessionStorage.setItem('form', JSON.stringify(value));
 }
 
