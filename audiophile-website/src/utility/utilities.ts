@@ -90,3 +90,11 @@ export function validateData(key: string, data: string) {
 			};
 	}
 }
+
+export function createFormSessionStorage(value: string) {
+	sessionStorage.setItem('form', JSON.stringify(value));
+}
+
+export function fetchSessionData(key: string) {
+	return JSON.parse(sessionStorage.getItem(key) as string);
+}
