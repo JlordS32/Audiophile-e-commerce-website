@@ -208,6 +208,12 @@
 	color: var(--primary);
 }
 
+@media screen and (max-width: 1300px) {
+	.nav {
+		padding: 2.25rem 6.5rem;
+	}
+}
+
 @media screen and (max-width: 1024px) {
 	.navLink {
 		display: none;
@@ -228,7 +234,7 @@
 	}
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
 	.modal {
 		top: 2rem;
 		right: 0;

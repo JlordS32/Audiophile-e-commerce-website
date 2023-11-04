@@ -10,7 +10,12 @@ import styles from '../styles/checkout.module.css';
 import Footer from '../components/Footer';
 import Form from '../components/Form';
 import Button from '../components/Button';
-import { cleanUpString, fetchData, formatCurrency } from '../utility/utilities';
+import {
+	cleanUpString,
+	fetchData,
+	formatCurrency,
+	validateData,
+} from '../utility/utilities';
 
 // data
 import data from '../data/data.json';
@@ -57,35 +62,35 @@ const Checkout = () => {
 	const defaultFormError: FormError = {
 		name: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		email: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		phone: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		address: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		postcode: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		city: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		country: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 		paymentMethod: {
 			error: false,
-			errorMsg: "Field can't be empty"
+			errorMsg: "Field can't be empty",
 		},
 	};
 
@@ -155,25 +160,20 @@ const Checkout = () => {
 
 	const handleSubmit = () => {
 		Object.entries(formData).forEach(([key, value]) => {
-			if (!value && value === '') {
-				console.log(key, value);
-				setFormErrors(prev => {
-					return {
-						...prev,
-						[key]: {
-						  ...prev[key],
-						  error: true
-						}
-					 };
-				  
-				});
-			}
+			const { valid, errorMsg } = validateData(key, value);
+
+			setFormErrors((prev) => {
+				return {
+					...prev,
+					[key]: {
+						...prev[key],
+						error: !valid,
+						errorMsg: errorMsg,
+					},
+				};
+			});
 		});
 	};
-
-	useEffect(() => {
-		console.log(formErrors);
-	}, [formErrors]);
 
 	return (
 		<div className={styles.checkoutContainer}>
@@ -185,7 +185,11 @@ const Checkout = () => {
 					<a>Go back</a>
 				</div>
 
-				<RRDForm>
+				<RRDForm
+					onSubmit={(e) => {
+						e.preventDefault();
+					}}
+				>
 					<div className={styles.checkoutForm}>
 						<h3 className='text--h3'>Checkout</h3>
 						<section className={styles.billingDetails}>
@@ -213,7 +217,7 @@ const Checkout = () => {
 									<Form.Text
 										placeholder='alexei@mail.com'
 										label='Email Address'
-										type='email'
+										type='text'
 										id='email'
 										onChange={handleInputChange}
 										error={formErrors.email.error}

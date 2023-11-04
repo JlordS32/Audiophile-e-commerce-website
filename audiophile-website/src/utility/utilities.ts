@@ -31,7 +31,6 @@ export function cleanUpString(
 
 	return cleanWorld as string;
 }
-
 export function getBestRecommended(selectedProduct: string) {
 	const newData = data.filter((item) => item.slug !== selectedProduct);
 
@@ -54,4 +53,40 @@ export function fetchData(key: string) {
 
 export function deleteCart() {
 	localStorage.removeItem('cart');
+}
+
+export function validateData(key: string, data: string) {
+	switch (key) {
+		case 'name':
+			const nameRegex = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
+			return {
+				valid: nameRegex.test(data),
+				errorMsg: 'Invalid name',
+			};
+		case 'email':
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			return {
+				valid: emailRegex.test(data),
+				errorMsg: 'Invalid email address',
+			};
+		case 'phone':
+			const phoneRegex =
+				/^(?:\+?\d{1,3}[-\s]?)?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
+			return {
+				valid: phoneRegex.test(data),
+				errorMsg: 'Invalid phone number',
+			};
+		case 'postcode':
+			const postcodeRegex = /^[A-Z]{1,2}\d{1,2} ?\d[A-Z]{2}$/i;
+			return {
+				valid: postcodeRegex.test(data),
+				errorMsg: 'Invalid postCode number',
+			};
+		default:
+			const dataNotEmpty = data !== '';
+			return {
+				valid: dataNotEmpty,
+				errorMsg: "Field can't be empty",
+			};
+	}
 }
