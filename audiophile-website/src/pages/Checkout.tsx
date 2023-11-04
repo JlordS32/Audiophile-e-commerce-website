@@ -24,15 +24,21 @@ type OrderType = {
 	item: string;
 };
 
+interface ErrorTypes {
+	error: boolean;
+	errorMsg: string;
+}
+
 interface FormError {
-	name: boolean;
-	email: boolean;
-	phone: boolean;
-	address: boolean;
-	postcode: boolean;
-	city: boolean;
-	country: boolean;
-	paymentMethod: boolean;
+	name: ErrorTypes;
+	email: ErrorTypes;
+	phone: ErrorTypes;
+	address: ErrorTypes;
+	postcode: ErrorTypes;
+	city: ErrorTypes;
+	country: ErrorTypes;
+	paymentMethod: ErrorTypes;
+	[key: string]: ErrorTypes;
 }
 
 interface FormData {
@@ -49,14 +55,38 @@ interface FormData {
 const Checkout = () => {
 	// default values
 	const defaultFormError: FormError = {
-		name: false,
-		email: false,
-		phone: false,
-		address: false,
-		postcode: false,
-		city: false,
-		country: false,
-		paymentMethod: false,
+		name: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		email: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		phone: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		address: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		postcode: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		city: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		country: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
+		paymentMethod: {
+			error: false,
+			errorMsg: "Field can't be empty"
+		},
 	};
 
 	const defaultFormData: FormData = {
@@ -130,8 +160,12 @@ const Checkout = () => {
 				setFormErrors(prev => {
 					return {
 						...prev,
-						[key]: true
-					}
+						[key]: {
+						  ...prev[key],
+						  error: true
+						}
+					 };
+				  
 				});
 			}
 		});
@@ -167,7 +201,8 @@ const Checkout = () => {
 										label='Name'
 										id='name'
 										onChange={handleInputChange}
-										error={formErrors.name}
+										error={formErrors.name.error}
+										errorMsg={formErrors.name.errorMsg}
 									/>
 								</fieldset>
 								<fieldset
@@ -181,7 +216,8 @@ const Checkout = () => {
 										type='email'
 										id='email'
 										onChange={handleInputChange}
-										error={formErrors.email}
+										error={formErrors.email.error}
+										errorMsg={formErrors.email.errorMsg}
 									/>
 								</fieldset>
 								<fieldset
@@ -195,7 +231,8 @@ const Checkout = () => {
 										id='phone'
 										type='phone'
 										onChange={handleInputChange}
-										error={formErrors.phone}
+										error={formErrors.phone.error}
+										errorMsg={formErrors.phone.errorMsg}
 									/>
 								</fieldset>
 							</div>
@@ -212,7 +249,8 @@ const Checkout = () => {
 										type='text'
 										id='address'
 										onChange={handleInputChange}
-										error={formErrors.address}
+										error={formErrors.address.error}
+										errorMsg={formErrors.address.errorMsg}
 									/>
 								</fieldset>
 								<fieldset>
@@ -222,7 +260,8 @@ const Checkout = () => {
 										id='postcode'
 										type='number'
 										onChange={handleInputChange}
-										error={formErrors.postcode}
+										error={formErrors.postcode.error}
+										errorMsg={formErrors.postcode.errorMsg}
 									/>
 								</fieldset>
 								<fieldset>
@@ -231,7 +270,8 @@ const Checkout = () => {
 										placeholder='New York'
 										id='city'
 										onChange={handleInputChange}
-										error={formErrors.city}
+										error={formErrors.city.error}
+										errorMsg={formErrors.city.errorMsg}
 									/>
 								</fieldset>
 								<fieldset>
@@ -240,7 +280,8 @@ const Checkout = () => {
 										placeholder='United States'
 										id='country'
 										onChange={handleInputChange}
-										error={formErrors.country}
+										error={formErrors.country.error}
+										errorMsg={formErrors.city.errorMsg}
 									/>
 								</fieldset>
 							</div>

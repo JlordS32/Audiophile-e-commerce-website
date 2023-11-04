@@ -65,7 +65,6 @@
 	border-radius: 0.5rem;
 	border: 1px solid var(--error);
 	background: var(--white);
-	color: red;
 }
 
 .form::placeholder {
