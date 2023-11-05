@@ -19,6 +19,7 @@ import OrderConfirmation from '../components/OrderConfirmation';
 import {
 	cleanUpString,
 	createFormSessionStorage,
+	deleteCart,
 	fetchData,
 	fetchSessionData,
 	formatCurrency,
@@ -406,7 +407,6 @@ const Checkout = () => {
 						<h4>Summary</h4>
 						<div className={styles.ordersContainer}>
 							{orderData.map((order: any) => {
-
 								return (
 									<div
 										key={order.id}

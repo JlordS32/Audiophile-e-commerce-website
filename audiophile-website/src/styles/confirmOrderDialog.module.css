@@ -1,9 +1,29 @@
+@keyframes fadeIn {
+	from {
+		opacity: 0.1;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 .confirmOrderDialog {
 	width: 33.75rem;
 	border-radius: 0.5rem;
 	border: 0;
 	padding: 3rem;
 	overflow: hidden;
+	animation: fadeIn 200ms ease-in;
+}
+
+.confirmOrderDialog > img {
+	margin-bottom: 2rem;
+}
+
+.confirmOrderDialog > p {
+	padding-top: 2rem;
+	padding-bottom: 1.5rem;
 }
 
 .confirmOrderDialog::backdrop {
@@ -71,8 +91,6 @@
 	justify-content: space-between;
 	width: 12.375rem;
 	align-items: start;
-	padding-bottom: 0.75rem;
-	border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
 }
 
 .orderItem > .shownOrder > .orderDesc p:first-child {
@@ -107,9 +125,26 @@
 }
 
 @media screen and (max-width: 520px) {
+	.confirmOrderDialog {
+		padding: 2rem;
+	}
+
+	.confirmOrderDialog > img {
+		margin-bottom: 1.5rem;
+	}
+
+	.confirmOrderDialog > p {
+		padding-top: 1rem;
+	}
+
 	.orderDetails {
 		flex-direction: column;
-		height: 14.5rem;
+		height: auto;
 		width: 100%;
+		margin-bottom: 1.5rem;
+	}
+
+	.orderItem {
+		padding: 1.5rem 0;
 	}
 }

@@ -38,24 +38,22 @@ function OrderConfirmation({
 			<img
 				src={checkIcon}
 				alt='check icon'
-				style={{
-					marginBottom: '2rem',
-				}}
 			/>
 			<h3 className='text--h3'>Thank you for your order</h3>
-			<p
-				className='standard-text'
-				style={{
-					paddingBottom: '2rem',
-					paddingTop: '1.5rem',
-				}}
-			>
-				You will receive an email confirmation shorlty
+			<p className='standard-text'>
+				You will receive an email confirmation shortly.
 			</p>
 
 			<div className={styles.orderDetails}>
 				<div className={styles.orderItem}>
-					<div className={styles.shownOrder}>
+					<div
+						className={styles.shownOrder}
+						style={{
+							borderBottom:
+								totalQuantity > 1 ? '1px rgba(0, 0, 0, 0.1) solid' : '',
+							paddingBottom: totalQuantity > 1 ? '0.75rem' : '',
+						}}
+					>
 						<img
 							src={orderData.image.desktop}
 							alt={orderData.name}
@@ -76,9 +74,11 @@ function OrderConfirmation({
 						</div>
 						<div className={styles.price}>x{orderData.quantity}</div>
 					</div>
-					<div className={styles.restOfTheItems}>
-						<p>and {`${totalQuantity - 1} other item(s)`}</p>
-					</div>
+					{totalQuantity > 1 && (
+						<div className={styles.restOfTheItems}>
+							<p>and {`${totalQuantity - 1} other item(s)`}</p>
+						</div>
+					)}
 				</div>
 				<div className={styles.grandTotal}>
 					<p>Grand Total</p>
