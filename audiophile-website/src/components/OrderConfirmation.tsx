@@ -29,7 +29,6 @@ function OrderConfirmation({
 	orderData,
 	totalQuantity,
 }: OrderConfirmationTypes) {
-
 	const { removeCart } = UseShoppingCart();
 
 	return (
@@ -37,10 +36,12 @@ function OrderConfirmation({
 			ref={dialogRef}
 			className={styles.confirmOrderDialog}
 		>
-			<img
-				src={checkIcon}
-				alt='check icon'
-			/>
+			<div className={styles.imgContainer}>
+				<img
+					src={checkIcon}
+					alt='check icon'
+				/>
+			</div>
 			<h3 className='text--h3'>Thank you for your order</h3>
 			<p className='standard-text'>
 				You will receive an email confirmation shortly.

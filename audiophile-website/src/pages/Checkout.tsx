@@ -70,6 +70,11 @@ interface eMoneyType {
 	accPin: string;
 }
 
+interface MoneyError {
+	valid: boolean;
+	errorMsg: string;
+}
+
 const Checkout = () => {
 	const SHIPPING_PRICE = 50;
 	const VAT_RATE = 1.2;
@@ -129,6 +134,7 @@ const Checkout = () => {
 		accNumber: '',
 		accPin: '',
 	});
+	const [moneyError, setMoneyError] = useState<MoneyError[]>([]);
 
 	const orders = fetchData('cart') ?? [];
 
@@ -211,8 +217,14 @@ const Checkout = () => {
 		const isValid = Object.values(formErrors).every((value) => !value.error);
 
 		const validatedMoney = Object.entries(money).map(([key, value]) => {
-			return validateData(key.toString(), value.toString());
+			const data = validateData(key.toString(), value.toString());
+
+			return {
+				...data,
+			};
 		});
+
+		setMoneyError(validatedMoney);
 
 		const isMoneyValid = validatedMoney.every((value) => {
 			if (formData.paymentMethod === 'cash') return true;
@@ -226,6 +238,10 @@ const Checkout = () => {
 			console.log('Form is not valid. Please correct the errors.');
 		}
 	};
+
+	useEffect(() => {
+		console.log(moneyError);
+	}, [moneyError]);
 
 	return (
 		<div className={styles.checkoutContainer}>
@@ -382,6 +398,10 @@ const Checkout = () => {
 										id='accNumber'
 										type='number'
 										onChange={handleEMoney}
+										error={moneyError[0] ? !moneyError[0]?.valid : false}
+										errorMsg={
+											moneyError[0] ? moneyError[0]?.errorMsg : 'Invalid'
+										}
 									/>
 									<Form.Text
 										placeholder='6891'
@@ -389,6 +409,10 @@ const Checkout = () => {
 										id='accPin'
 										type='number'
 										onChange={handleEMoney}
+										error={moneyError[1] ? !moneyError[0]?.valid : false}
+										errorMsg={
+											moneyError[1] ? moneyError[0]?.errorMsg : 'Invalid'
+										}
 									/>
 								</div>
 							)}

@@ -17,7 +17,7 @@
 	animation: fadeIn 200ms ease-in;
 }
 
-.confirmOrderDialog > img {
+.confirmOrderDialog > .imgContainer {
 	margin-bottom: 2rem;
 }
 
@@ -129,12 +129,22 @@
 		padding: 2rem;
 	}
 
-	.confirmOrderDialog > img {
+	.confirmOrderDialog > .imgContainer {
 		margin-bottom: 1.5rem;
+		display: flex;
+		justify-content: center;
 	}
 
 	.confirmOrderDialog > p {
 		padding-top: 1rem;
+	}
+
+	.confirmOrderDialog > h3 {
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1.75rem;
+		letter-spacing: 0.05356rem;
+		text-align: center;
 	}
 
 	.orderDetails {
