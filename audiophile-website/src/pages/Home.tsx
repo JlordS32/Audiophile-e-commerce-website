@@ -11,11 +11,21 @@ import zx9Img from '../assets/home/desktop/image-speaker-zx9.png';
 import Review from '../components/Review';
 import Footer from '../components/Footer';
 
+// libraries
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const Home = () => {
+	AOS.init();
+
 	return (
 		<div className={styles.homeContainer}>
 			<div className={styles.home}>
-				<div className={styles.hero}>
+				<div
+					className={styles.hero}
+					data-aos='fade-in'
+					data-aos-duration='2000'
+				>
 					<p
 						className='overline text-white'
 						style={{
@@ -38,9 +48,12 @@ const Home = () => {
 						>
 							XX99 Mark II Headphones
 						</h1>
-						<p className='text-white' style={{
-							opacity: '0.75'
-						}}>
+						<p
+							className='text-white'
+							style={{
+								opacity: '0.75',
+							}}
+						>
 							Experience natural, lifelike audio and exceptional build quality
 							made for the passionate music enthusiast.
 						</p>
@@ -55,7 +68,11 @@ const Home = () => {
 			<Products />
 
 			<section className='d-flex justify-content-center align-items-center flex-column'>
-				<article className={styles.zx9SpeakerSection}>
+				<article
+					className={styles.zx9SpeakerSection}
+					data-aos='fade-up'
+					data-aos-duration='1000'
+				>
 					<div className={styles.imgContainer}>
 						<img
 							src={zx9Img}
@@ -74,7 +91,11 @@ const Home = () => {
 					</div>
 				</article>
 
-				<article className={styles.zx7Section}>
+				<article
+					className={styles.zx7Section}
+					data-aos='fade-right'
+					data-aos-duration='1000'
+				>
 					<div className={styles.zx7Desc}>
 						<span
 							className='text--h4'
@@ -91,8 +112,14 @@ const Home = () => {
 				</article>
 
 				<article className={styles.earphonesDesc}>
-					<div></div>
-					<div>
+					<div
+						data-aos='fade-right'
+						data-aos-duration='1000'
+					></div>
+					<div
+						data-aos='fade-left'
+						data-aos-duration='1000'
+					>
 						<span
 							className='text--h4'
 							style={{
@@ -109,7 +136,12 @@ const Home = () => {
 			</section>
 
 			{/* Review section about Audiophile */}
-			<Review />
+			<div
+				data-aos='fade-right'
+				data-aos-duration='1000'
+			>
+				<Review />
+			</div>
 
 			<Footer />
 		</div>

@@ -20,6 +20,7 @@ type RadioProps = {
 	label: string;
 	id?: string;
 	name?: string;
+	error?: boolean;
 	selectedValue?: string;
 	onClick?: (value: PaymentType, id: string) => void;
 };
@@ -34,7 +35,7 @@ const Form = {
 		errorMsg,
 		type,
 		onChange,
-		value
+		value,
 	}: FormProps) {
 		const inputId = id ? id : `text-${crypto.randomUUID()}`;
 		return (
@@ -86,6 +87,7 @@ const Form = {
 		id,
 		name,
 		onClick,
+		error = false,
 		selectedValue = '',
 	}: RadioProps) {
 		const [checked, setChecked] = useState<boolean>(false);
@@ -100,42 +102,47 @@ const Form = {
 		});
 
 		return (
-			<div
-				className={`${styles.form} ${checked ? styles.checked : ''} ${
-					styles.radioContainer
-				}`}
-				onClick={() => {
-					if (onClick) {
-						onClick(radioRef.current?.value as PaymentType, radioRef.current?.id as string);
-					}
-				}}
-			>
-				<label
-					htmlFor={inputId}
-					style={{
-						flex: '1',
+			<div>
+				<div
+					className={`${styles.form} ${checked ? styles.checked : ''} ${
+						styles.radioContainer
+					} ${error ? styles.error : ''}`}
+					onClick={() => {
+						if (onClick) {
+							onClick(
+								radioRef.current?.value as PaymentType,
+								radioRef.current?.id as string
+							);
+						}
 					}}
-					className={`${styles.label} radio-label`}
 				>
-					<input
-						type='radio'
-						value={value}
-						id='paymentMethod'
-						name={name}
-						className={styles.radio}
-						ref={radioRef}
-						checked={checked}
-						readOnly
-					/>
-					<span
+					<label
+						htmlFor={inputId}
 						style={{
-							marginLeft: '1.5rem',
-							fontSize: '0.875rem',
+							flex: '1',
 						}}
+						className={`${styles.label} radio-label`}
 					>
-						{label}
-					</span>
-				</label>
+						<input
+							type='radio'
+							value={value}
+							id='paymentMethod'
+							name={name}
+							className={styles.radio}
+							ref={radioRef}
+							checked={checked}
+							readOnly
+						/>
+						<span
+							style={{
+								marginLeft: '1.5rem',
+								fontSize: '0.875rem',
+							}}
+						>
+							{label}
+						</span>
+					</label>
+				</div>
 			</div>
 		);
 	},

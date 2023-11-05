@@ -7,19 +7,31 @@ import Link from './Link';
 const Products = () => {
 	return (
 		<section className={styles.productsContainer}>
-			<div className={styles.productHeadPhones}>
+			<div
+				className={styles.productHeadPhones}
+				data-aos='fade-right'
+				data-aos-duration='1000'
+			>
 				<span className='text--h6'>Headphones</span>
 				<RRDLink to='/headphones'>
 					<Link>Shop</Link>
 				</RRDLink>
 			</div>
-			<div className={styles.productSpeakers}>
+			<div
+				className={styles.productSpeakers}
+				data-aos='fade-up'
+				data-aos-duration='1000'
+			>
 				<span className='text--h6'>Speakers</span>
 				<RRDLink to='/speakers'>
 					<Link>Shop</Link>
 				</RRDLink>
 			</div>
-			<div className={styles.productEarphones}>
+			<div
+				className={styles.productEarphones}
+				data-aos='fade-left'
+				data-aos-duration='1000'
+			>
 				<span className='text--h6'>Earphones</span>
 				<RRDLink to='/earphones'>
 					<Link>Shop</Link>

@@ -21,6 +21,7 @@ import checkIcon from '../assets/checkout/icon-order-confirmation.svg';
 // components
 import Button from './Button';
 import { cleanUpString, formatCurrency } from '../utility/utilities';
+import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 function OrderConfirmation({
 	dialogRef,
@@ -28,7 +29,8 @@ function OrderConfirmation({
 	orderData,
 	totalQuantity,
 }: OrderConfirmationTypes) {
-	console.log(orderData.quantity);
+
+	const { removeCart } = UseShoppingCart();
 
 	return (
 		<dialog
@@ -87,7 +89,14 @@ function OrderConfirmation({
 			</div>
 
 			<RRDLink to='/'>
-				<Button width='100%'>Back to Home</Button>
+				<Button
+					width='100%'
+					onClick={() => {
+						removeCart();
+					}}
+				>
+					Back to Home
+				</Button>
 			</RRDLink>
 		</dialog>
 	);

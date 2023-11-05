@@ -20,8 +20,12 @@ import PageNotFound from './pages/PageNotFound';
 
 // library
 import { ToastContainer } from 'react-toastify';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const App = () => {
+	AOS.init();
+
 	const router = createBrowserRouter([
 		{
 			path: '/',

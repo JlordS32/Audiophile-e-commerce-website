@@ -95,6 +95,34 @@ export function validateData(key: string, data: string) {
 				valid: postcodeRegex.test(data),
 				errorMsg: 'Invalid postcode number',
 			};
+		case 'accNumber':
+			const accNumberRegex = /^\d{9}$/i;
+
+			if (data.length !== 9) {
+				return {
+					valid: false,
+					errorMsg: 'Please enter a 9 digit number',
+				};
+			}
+
+			return {
+				valid: accNumberRegex.test(data),
+				errorMsg: 'Invalid account number',
+			};
+		case 'accPin':
+			const accPinRegex = /^\d{4}$/i;
+
+			if (data.length !== 4) {
+				return {
+					valid: false,
+					errorMsg: 'Please enter a 4 digit number',
+				};
+			}
+
+			return {
+				valid: accPinRegex.test(data),
+				errorMsg: 'Invalid PIN number',
+			};
 		default:
 			const dataNotEmpty = data !== '';
 			return {

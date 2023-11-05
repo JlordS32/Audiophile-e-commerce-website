@@ -19,7 +19,6 @@ import OrderConfirmation from '../components/OrderConfirmation';
 import {
 	cleanUpString,
 	createFormSessionStorage,
-	deleteCart,
 	fetchData,
 	fetchSessionData,
 	formatCurrency,
@@ -28,7 +27,6 @@ import {
 
 // data
 import data from '../data/data.json';
-import { UseShoppingCart } from '../context/ShoppingCartContext';
 
 // types
 type PaymentType = 'e-money' | 'cash' | '';
@@ -65,6 +63,11 @@ interface FormData {
 	city: string | '';
 	country: string | '';
 	paymentMethod: PaymentType;
+}
+
+interface eMoneyType {
+	accNumber: string;
+	accPin: string;
 }
 
 const Checkout = () => {
@@ -122,6 +125,10 @@ const Checkout = () => {
 	const [selectedRadio, setSelectedRadio] = useState<PaymentType>('');
 	const [formData, setFormData] = useState<FormData>(defaultFormData);
 	const [formErrors, setFormErrors] = useState<FormError>(defaultFormError);
+	const [money, setMoney] = useState<eMoneyType>({
+		accNumber: '',
+		accPin: '',
+	});
 
 	const orders = fetchData('cart') ?? [];
 
@@ -141,7 +148,7 @@ const Checkout = () => {
 	// ref
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
-	const total: number = orderData.reduce((prev, next) => {
+	const total: number = orderData.reduce((prev: number, next: any) => {
 		return prev + next.price * next.quantity;
 	}, 0);
 
@@ -152,9 +159,6 @@ const Checkout = () => {
 		'Earphones',
 		'wireless',
 	];
-
-	// custom context
-	const { total: totalQuantity } = UseShoppingCart();
 
 	// rrd hooks
 	const navigate = useNavigate();
@@ -171,6 +175,18 @@ const Checkout = () => {
 		setFormData({ ...formData, [name]: value });
 		createFormSessionStorage({ ...formData, [name]: value });
 	};
+
+	const handleEMoney = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setMoney({ ...money, [name]: Number(value) });
+	};
+
+	useEffect(() => {
+		const sessionFormData = fetchSessionData('form') ?? defaultFormData;
+
+		setFormData(sessionFormData);
+		setSelectedRadio(sessionFormData.paymentMethod);
+	}, []);
 
 	const handleSubmit = () => {
 		Object.entries(formData).forEach(([key, value]) => {
@@ -194,22 +210,22 @@ const Checkout = () => {
 
 		const isValid = Object.values(formErrors).every((value) => !value.error);
 
-		console.log(formErrors);
-		console.log(isValid);
+		const validatedMoney = Object.entries(money).map(([key, value]) => {
+			return validateData(key.toString(), value.toString());
+		});
 
-		if (isValid) {
+		const isMoneyValid = validatedMoney.every((value) => {
+			if (formData.paymentMethod === 'cash') return true;
+			else return value.valid;
+		});
+
+		if (isValid && isMoneyValid) {
 			dialogRef.current?.showModal();
 		} else {
 			// If the form is not valid, you can display an error message or take other actions.
 			console.log('Form is not valid. Please correct the errors.');
 		}
 	};
-
-	useEffect(() => {
-		const sessionFormData = fetchSessionData('form') ?? defaultFormData;
-
-		setFormData(sessionFormData);
-	}, []);
 
 	return (
 		<div className={styles.checkoutContainer}>
@@ -346,6 +362,7 @@ const Checkout = () => {
 									onClick={handleClick}
 									selectedValue={selectedRadio}
 									name='eMoney'
+									error={formErrors.paymentMethod.error}
 								/>
 								<Form.Radio
 									value='cash'
@@ -353,6 +370,7 @@ const Checkout = () => {
 									onClick={handleClick}
 									selectedValue={selectedRadio}
 									name='cashOnDelivery'
+									error={formErrors.paymentMethod.error}
 								/>
 							</fieldset>
 
@@ -361,16 +379,16 @@ const Checkout = () => {
 									<Form.Text
 										placeholder='238521993'
 										label='e-Money Number'
-										id='paymentMethod'
+										id='accNumber'
 										type='number'
-										onChange={handleInputChange}
+										onChange={handleEMoney}
 									/>
 									<Form.Text
 										placeholder='6891'
 										label='e-Money PIN'
-										id='paymentMethod'
+										id='accPin'
 										type='number'
-										onChange={handleInputChange}
+										onChange={handleEMoney}
 									/>
 								</div>
 							)}
