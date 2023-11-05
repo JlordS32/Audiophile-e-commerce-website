@@ -4,7 +4,7 @@ import { useRouteError, Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/error.module.css';
 
 // library imports
-import { HomeIcon, ArrowUturnLeftIcon } from '@heroicons/react/24/solid';
+import { HomeIcon } from '@heroicons/react/24/solid';
 import Button from '../components/Button';
 
 interface Error {
