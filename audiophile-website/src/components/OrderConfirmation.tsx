@@ -20,7 +20,7 @@ import checkIcon from '../assets/checkout/icon-order-confirmation.svg';
 
 // components
 import Button from './Button';
-import { formatCurrency } from '../utility/utilities';
+import { cleanUpString, formatCurrency } from '../utility/utilities';
 
 function OrderConfirmation({
 	dialogRef,
@@ -53,9 +53,9 @@ function OrderConfirmation({
 				You will receive an email confirmation shorlty
 			</p>
 
-			<div className='d-flex'>
-				<div>
-					<div className='d-flex'>
+			<div className={styles.orderDetails}>
+				<div className={styles.orderItem}>
+					<div className={styles.shownOrder}>
 						<img
 							src={orderData.image.desktop}
 							alt={orderData.name}
@@ -63,17 +63,24 @@ function OrderConfirmation({
 								width: '3.15rem',
 							}}
 						/>
-						<div>
-							<p>{orderData.name}</p>
+						<div className={styles.orderDesc}>
+							<p>
+								{cleanUpString(orderData.name, [
+									'Headphones',
+									'Wireless',
+									'Speaker',
+									'Earphones',
+								])}
+							</p>
 							<p>{formatCurrency(orderData.price)}</p>
 						</div>
-						<div>{orderData.quantity}</div>
+						<div className={styles.price}>x{orderData.quantity}</div>
 					</div>
-					<div>
+					<div className={styles.restOfTheItems}>
 						<p>and {`${totalQuantity - 1} other item(s)`}</p>
 					</div>
 				</div>
-				<div className='grandTotal'>
+				<div className={styles.grandTotal}>
 					<p>Grand Total</p>
 					<p>{formatCurrency(grandTotal)}</p>
 				</div>

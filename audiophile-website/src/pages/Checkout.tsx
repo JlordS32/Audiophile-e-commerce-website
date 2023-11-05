@@ -462,7 +462,7 @@ const Checkout = () => {
 				dialogRef={dialogRef}
 				grandTotal={total * VAT_RATE + SHIPPING_PRICE}
 				orderData={orderData[0]}
-				totalQuantity={totalQuantity}
+				totalQuantity={orderData.length}
 			/>
 		</div>
 	);

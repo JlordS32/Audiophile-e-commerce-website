@@ -1,14 +1,115 @@
 .confirmOrderDialog {
 	width: 33.75rem;
-	height: 36.3125rem;
 	border-radius: 0.5rem;
 	border: 0;
 	padding: 3rem;
 	overflow: hidden;
-
 }
 
 .confirmOrderDialog::backdrop {
 	background-color: rgba(0, 0, 0, 0.6);
 }
 
+.orderDetails {
+	display: flex;
+	width: 12.375rem;
+	height: 8.75rem;
+	justify-content: space-between;
+	width: 100%;
+	border-radius: 0.5rem;
+	background-color: var(--grey);
+	margin-bottom: 2.9rem;
+	overflow: hidden;
+}
+
+.orderDetails > {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.orderDetails > .grandTotal {
+	background-color: var(--black);
+	color: var(--white);
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	flex-direction: column;
+	padding: 2rem 4rem 2rem 2rem;
+}
+
+.orderDetails > .grandTotal p,
+.orderItem > .shownOrder > div p {
+	font-style: normal;
+	line-height: normal;
+	text-transform: uppercase;
+}
+
+.orderDetails > .grandTotal p:first-child {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	opacity: 0.5;
+	margin-bottom: 0.5rem;
+}
+
+.orderDetails > .grandTotal p:last-child {
+	font-size: 1.125rem;
+	font-weight: 700;
+}
+
+.orderItem {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.orderItem > .shownOrder {
+	display: flex;
+	justify-content: space-between;
+	width: 12.375rem;
+	align-items: start;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
+}
+
+.orderItem > .shownOrder > .orderDesc p:first-child {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.orderItem > .shownOrder > .orderDesc p:last-child {
+	font-size: 0.875rem;
+	font-weight: 700;
+	opacity: 0.5;
+}
+
+.orderItem > .shownOrder > .price {
+	color: #000;
+	text-align: right;
+	font-family: Manrope;
+	font-size: 0.9375rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5625rem;
+	opacity: 0.5;
+}
+
+.restOfTheItems {
+	padding-top: 0.75rem;
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 900;
+	line-height: normal;
+	letter-spacing: -0.01338rem;
+	opacity: 0.5;
+}
+
+@media screen and (max-width: 520px) {
+	.orderDetails {
+		flex-direction: column;
+		height: 14.5rem;
+		width: 100%;
+	}
+}
