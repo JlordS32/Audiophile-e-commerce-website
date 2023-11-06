@@ -9,7 +9,7 @@ const Products = () => {
 		<section className={styles.productsContainer}>
 			<div
 				className={styles.productHeadPhones}
-				data-aos='fade-right'
+				data-aos='fade-in'
 				data-aos-duration='1000'
 			>
 				<span className='text--h6'>Headphones</span>
@@ -19,7 +19,7 @@ const Products = () => {
 			</div>
 			<div
 				className={styles.productSpeakers}
-				data-aos='fade-up'
+				data-aos='fade-in'
 				data-aos-duration='1000'
 			>
 				<span className='text--h6'>Speakers</span>
@@ -29,7 +29,7 @@ const Products = () => {
 			</div>
 			<div
 				className={styles.productEarphones}
-				data-aos='fade-left'
+				data-aos='fade-in'
 				data-aos-duration='1000'
 			>
 				<span className='text--h6'>Earphones</span>

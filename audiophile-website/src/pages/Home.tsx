@@ -117,7 +117,7 @@ const Home = () => {
 						data-aos-duration='1000'
 					></div>
 					<div
-						data-aos='fade-left'
+						data-aos='fade-up'
 						data-aos-duration='1000'
 					>
 						<span
@@ -137,7 +137,7 @@ const Home = () => {
 
 			{/* Review section about Audiophile */}
 			<div
-				data-aos='fade-right'
+				data-aos='fade-up'
 				data-aos-duration='1000'
 			>
 				<Review />

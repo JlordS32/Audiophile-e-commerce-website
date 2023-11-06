@@ -24,7 +24,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 
 const App = () => {
-	AOS.init();
+	AOS.init({
+		once: true
+	});
 
 	const router = createBrowserRouter([
 		{

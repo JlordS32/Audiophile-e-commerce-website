@@ -25,6 +25,9 @@ import errorImg from '../assets/failedLoadingImg.jpg';
 // context
 import { UseShoppingCart } from '../context/ShoppingCartContext';
 
+// libraries
+import { toast } from 'react-toastify';
+
 interface GalleryType {
 	[0]: string;
 	[1]: {
@@ -66,7 +69,7 @@ const ProductPage = () => {
 		price,
 		includes,
 		gallery,
-		slug
+		slug,
 	} = productData;
 
 	const handleImageError = (e: React.SyntheticEvent) => {
@@ -224,9 +227,11 @@ const ProductPage = () => {
 										updateCart({
 											item: slug,
 											quantity: quantity,
-											id: ProductID
+											id: ProductID,
 										});
 										resetQuantity();
+
+										toast('uwu');
 									}}
 								>
 									Add to cart
